@@ -1,0 +1,17 @@
+{
+  "name": "personalwebapp",
+  "version": "0.0.1",
+  "description": "Josh Olson's personal website",
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlsonDev/PersonalWebApp.git"
+  },
+  "author": "Josh Olson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OlsonDev/PersonalWebApp/issues"
+  },
+  "homepage": "https://www.josholson.name"
+}
