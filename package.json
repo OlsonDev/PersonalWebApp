@@ -19,7 +19,7 @@
   },
 	"homepage": "https://www.josholson.name",
 	"scripts": {
-		"sass": "node-sass --indent-type tab --indent-width 1 --linefeed crlf --output-style expanded --precision 10 Client/sass/styles.scss -o wwwroot/css/",
-		"sass-watch": "node-sass -w -r --indent-type tab --indent-width 1 --linefeed crlf --output-style expanded --precision 10 Client/sass/styles.scss -o wwwroot/css/"
+		"sass": "node-sass --indent-type tab --indent-width 1 --linefeed crlf --output-style expanded --precision 10 Client/sass/styles.scss -out-file wwwroot/css/styles.css",
+		"sass-watch": "node-sass -w --indent-type tab --indent-width 1 --linefeed crlf --output-style expanded --precision 10 Client/sass/styles.scss -out-file wwwroot/css/styles.css"
 	} 
 }
