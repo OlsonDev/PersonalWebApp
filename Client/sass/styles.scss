@@ -1,41 +1,5 @@
 @import 'reset';
 @import 'variables';
-
-html {
-	box-sizing: border-box;
-	font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
-}
-*, *::before, *::after {
-	box-sizing: inherit;
-}
-body {
-	background: $black;
-	color: $white;
-}
-#main-nav, #web-profiles {
-	text-align: center;
-	li {
-		display: inline-block;
-		width: 150px;
-		a {
-			color: #fff;
-			text-decoration: none;
-			display: block;
-			padding: 10px 0;
-			width: 100%;
-			text-align: center;
-			&:hover, &:focus {
-				background: $gold;
-			}
-		}
-	}
-}
-header, footer {
-	background: #000;
-}
-footer {
-	padding: 10px 0;
-}
-#content {
-	padding: 10px;
-}
+@import 'layout';
+@import 'keywords';
+@import 'pages/all';
