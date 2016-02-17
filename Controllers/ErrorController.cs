@@ -1,9 +1,9 @@
 using Microsoft.AspNet.Mvc;
 
 namespace PersonalWebApp.Controllers {
-	public class HomeController : Controller {
+	public class ErrorController : Controller {
 		public IActionResult Index() {
-			ViewData["Title"] = "Home";
+			ViewData["Title"] = "Error";
 			return View();
 		}
 	}

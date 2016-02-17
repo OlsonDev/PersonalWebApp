@@ -1,11 +1,34 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>PersonalWebApp</title>
-    </head>
-    <body>
-        @RenderBody()
-    </body>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>@ViewData["Title"] | Josh Olson</title>
+		<link type="text/css" rel="stylesheet" href="/css/styles.css"/>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ul id="main-nav">
+					<li><a href="/home">Home</a></li>
+					<li><a href="/blog">Blog</a></li>
+					<li><a href="/résumé">Résumé</a></li>
+					<li><a href="/skills">Skills</a></li>
+					<li><a href="/portfolio">Portfolio</a></li>
+					<li><a href="/contact">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+		<section id="content">@RenderBody()</section>
+		<footer>
+			<p id="copyright">&copy; @DateTime.Now.Year Josh Olson. All rights reserved.</p>
+			<ul id="web-profiles">
+				<li><a target="_blank" href="https://www.linkedin.com/in/olsondev">LinkedIn</a></li>
+				<li><a target="_blank" href="https://www.github.com/olsondev">GitHub</a></li>
+				<li><a target="_blank" href="https://bitbucket.org/olson.dev/">BitBucket</a></li>
+				<li><a target="_blank" href="http://stackexchange.com/users/77825/olson-dev">StackExchange</a></li>
+				<li><a target="_blank" href="https://careers.stackoverflow.com/olsondev">StackOverflow Careers</a></li>
+			</ul>
+		</footer>
+	</body>
 </html>

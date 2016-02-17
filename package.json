@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "description": "Josh Olson's personal website",
   "dependencies": {},
-  "devDependencies": {},
+	"devDependencies": {
+		"concurrently": "^1.0.0",
+		"typescript": "^1.7.5",
+		"node-sass": "^3.4.2"
+	},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OlsonDev/PersonalWebApp.git"
@@ -13,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/OlsonDev/PersonalWebApp/issues"
   },
-  "homepage": "https://www.josholson.name"
+	"homepage": "https://www.josholson.name",
+	"scripts": {
+		"sass": "node-sass --indent-type tab --indent-width 1 --linefeed crlf --output-style expanded --precision 10 Client/sass/styles.scss -o wwwroot/css/",
+		"sass-watch": "node-sass -w -r --indent-type tab --indent-width 1 --linefeed crlf --output-style expanded --precision 10 Client/sass/styles.scss -o wwwroot/css/"
+	} 
 }
