@@ -19,9 +19,16 @@
   },
 	"homepage": "https://www.josholson.name",
 	"scripts": {
+		"build": "npm run clear-wwwroot && npm run copy && npm run sass",
+		"clear-wwwroot": "rd /s /q wwwroot && md wwwroot",
+		"copy": "concurrent \"npm run copy-images\" \"npm run copy-webconfig",
+		"copy-images": "xcopy \"client/images\" \"wwwroot/images\" /y /q /i /s",
+		"copy-webconfig": "xcopy \"client\\web.config\" \"wwwroot\\*\" /y /q",
 		"sass": "node-sass --indent-type tab --indent-width 1 --linefeed crlf --output-style expanded --precision 10 Client/sass/styles.scss -out-file wwwroot/css/styles.css",
-		"sass-watch": "node-sass -w --indent-type tab --indent-width 1 --linefeed crlf --output-style expanded --precision 10 Client/sass/styles.scss -out-file wwwroot/css/styles.css"
+		"sass-watch": "node-sass -w --indent-type tab --indent-width 1 --linefeed crlf --output-style expanded --precision 10 Client/sass/styles.scss -out-file wwwroot/css/styles.css",
 		"tsc:w": "tsc -w",
 		"tsc-pretty": "tsc --pretty",
+		"typings": "cd client/ts && typings install",
+		"watch": "concurrent \"npm run sass-watch\" \"npm run tsc:w"
 	} 
 }
