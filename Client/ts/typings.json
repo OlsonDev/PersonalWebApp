@@ -1,0 +1,5 @@
+{
+	"ambientDependencies": {
+		"grecaptcha": "github:DefinitelyTyped/DefinitelyTyped/grecaptcha/grecaptcha.d.ts#bfb1ef58546e5687c4560bc115b6c3a6eb7445c2"
+	}
+}
