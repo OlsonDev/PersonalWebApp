@@ -9,14 +9,19 @@ namespace PersonalWebApp {
 		public Startup(IHostingEnvironment env) {
 			var builder = new ConfigurationBuilder()
 					.AddJsonFile("appsettings.json")
-					.AddEnvironmentVariables()
+					.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
 			;
+			if (env.IsDevelopment()) {
+				builder.AddUserSecrets();
+			}
+			builder.AddEnvironmentVariables();
 			Configuration = builder.Build();
 		}
 		public IConfigurationRoot Configuration { get; set; }
 
 		public void ConfigureServices(IServiceCollection services) {
 			services.AddMvc();
+			services.AddSingleton<IConfiguration>(sp => Configuration);
 		}
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
