@@ -1,3 +1,16 @@
+body.controller-resume {
+	h1 {
+		text-align: center;
+		font-size: 30px;
+	}
+	h2 {
+		font-size: 24px;
+		text-align: center;
+	}
+	section:not(#content) {
+		margin: 10px 0;
+	}
+}
 #education-sources {
 	li {
 		display: block;

@@ -6,7 +6,7 @@
 		<title>@ViewData["Title"] | Josh Olson</title>
 		<link type="text/css" rel="stylesheet" href="/css/styles.css"/>
 	</head>
-	<body>
+	<body class="controller-@ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant() action-@ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant()">
 		<header>
 			<nav>
 				<ul id="main-nav">
