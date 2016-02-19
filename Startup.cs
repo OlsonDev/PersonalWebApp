@@ -3,6 +3,7 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using PersonalWebApp.Conventions;
 using PersonalWebApp.Middleware;
 
 namespace PersonalWebApp {
@@ -21,7 +22,9 @@ namespace PersonalWebApp {
 		public IConfigurationRoot Configuration { get; set; }
 
 		public void ConfigureServices(IServiceCollection services) {
-			services.AddMvc();
+			services.AddMvc(options => {
+				options.Conventions.Add(new HyphenatedRoutingConvention());
+			});
 			services.AddSingleton<IConfiguration>(sp => Configuration);
 		}
 
