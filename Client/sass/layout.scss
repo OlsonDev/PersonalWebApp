@@ -2,20 +2,23 @@ html {
 	box-sizing: border-box;
 	font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
 }
+
 *, *::before, *::after {
 	box-sizing: inherit;
 }
+
 body {
 	background: $black;
 	color: $white;
 }
+
 li {
 	display: inline-block;
 }
+
 #main-nav, #web-profiles {
 	text-align: center;
 	li {
-		width: 150px;
 		a {
 			color: #fff;
 			text-decoration: none;
@@ -23,18 +26,39 @@ li {
 			padding: 10px 0;
 			width: 100%;
 			text-align: center;
+		}
+	}
+}
+
+#main-nav {
+	li {
+		width: 150px;
+		a {
 			&:hover, &:focus {
 				background: $gold;
 			}
 		}
 	}
 }
+
+#web-profiles {
+	svg {
+		&:hover, &:focus {
+			path {
+				fill: $gold;
+			}
+		}
+	}
+}
+
 header, footer {
 	background: #000;
 }
+
 footer {
 	padding: 10px 0;
 }
+
 #content {
 	padding: 10px;
 }
