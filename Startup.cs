@@ -3,6 +3,7 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using PersonalWebApp.Middleware;
 
 namespace PersonalWebApp {
 	public class Startup {
@@ -35,6 +36,7 @@ namespace PersonalWebApp {
 			}
 			app.UseIISPlatformHandler();
 			app.UseStaticFiles();
+			app.UseStripWhitespace();
 			app.UseMvc(routes => {
 				routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
 			});
