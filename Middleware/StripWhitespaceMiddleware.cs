@@ -21,7 +21,7 @@ namespace PersonalWebApp.Middleware {
 
 			await _next.Invoke(context);
 
-			var contentType = context.Response.ContentType;
+			var contentType = context.Response.ContentType ?? "";
 			if (contentType.StartsWith("text/html")) {
 				intercept.Seek(0, SeekOrigin.Begin);
 				var reader = new StreamReader(intercept);
