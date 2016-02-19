@@ -1,22 +1,22 @@
 {
-  "name": "personalwebapp",
-  "version": "0.0.1",
-  "description": "Josh Olson's personal website",
-  "dependencies": {},
+	"name": "personalwebapp",
+	"version": "0.0.1",
+	"description": "Josh Olson's personal website",
+	"dependencies": { },
 	"devDependencies": {
 		"concurrently": "^1.0.0",
 		"typescript": "^1.8",
 		"node-sass": "^3.4.2"
 	},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/OlsonDev/PersonalWebApp.git"
-  },
-  "author": "Josh Olson",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/OlsonDev/PersonalWebApp/issues"
-  },
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/OlsonDev/PersonalWebApp.git"
+	},
+	"author": "Josh Olson",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/OlsonDev/PersonalWebApp/issues"
+	},
 	"homepage": "https://www.josholson.name",
 	"scripts": {
 		"build": "npm run clear-wwwroot && npm run copy && npm run sass",
@@ -31,5 +31,5 @@
 		"tsc-pretty": "tsc --pretty",
 		"typings": "cd client/ts && typings install",
 		"watch": "concurrent \"npm run sass-watch\" \"npm run tsc:w"
-	} 
+	}
 }
