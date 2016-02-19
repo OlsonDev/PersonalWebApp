@@ -19,9 +19,6 @@ namespace PersonalWebApp.Conventions {
 
 				var controllerTmpl = Slugify(controller.ControllerName);
 				controller.AttributeRoutes.Add(new AttributeRouteModel { Template = controllerTmpl });
-				if (controllerTmpl == DefaultController) {
-					controller.AttributeRoutes.Add(new AttributeRouteModel { Template = "" });
-				}
 
 				var actionsToAdd = new List<ActionModel>();
 				foreach (var action in controller.Actions) {
@@ -31,6 +28,9 @@ namespace PersonalWebApp.Conventions {
 					if (actionSlug == DefaultAction) {
 						var defaultActionModel = new ActionModel(action) { AttributeRouteModel = new AttributeRouteModel { Template = "" } };
 						actionsToAdd.Add(defaultActionModel);
+						if (controllerTmpl == DefaultController) {
+							actionsToAdd.Add(new ActionModel(action) { AttributeRouteModel = new AttributeRouteModel { Template = "/" } });
+						}
 					}
 					action.AttributeRouteModel = new AttributeRouteModel { Template = actionTmpl };
 				}
