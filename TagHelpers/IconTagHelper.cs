@@ -1,16 +1,25 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Microsoft.AspNet.Razor.TagHelpers;
+using Microsoft.AspNet.Server.Kestrel;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace PersonalWebApp.TagHelpers {
 	
 	[HtmlTargetElement("icon", TagStructure = TagStructure.WithoutEndTag, Attributes = "name")]
 	public class IconTagHelper : TagHelper {
+		private readonly IApplicationEnvironment _appEnvironment;
+
 		public string Name { get; set; } = "alert";
 		public string Size { get; set; } = "24";
 		public string Fill { get; set; } = "fff";
+
+		public IconTagHelper(IApplicationEnvironment appEnvironment) {
+			_appEnvironment = appEnvironment;
+		}
 
 		public override void Process(TagHelperContext context, TagHelperOutput output) {
 			output.TagName = "svg";
@@ -34,14 +43,23 @@ namespace PersonalWebApp.TagHelpers {
 		private string GetPath(string name, string fill) {
 			XDocument doc;
 			try {
-				doc = XDocument.Load($"Client/svg/{name}.svg");
+				doc = GetSvgDocument(name);
 			} catch (FileNotFoundException) {
-				doc = XDocument.Load("Client/svg/alert.svg");
-				fill = "#fc0";
+				try {
+					doc = GetSvgDocument("alert");
+					fill = "#fc0";
+				} catch (FileNotFoundException) {
+					return $"<!-- File not found: {name} -->";
+				}
 			}
 			var path = doc.Descendants(doc.Root.Name.Namespace + "path").First();
 			path.SetAttributeValue("fill", Regex.Replace(fill, "^#?", "#"));
 			return path.ToString(SaveOptions.DisableFormatting);
+		}
+
+		private XDocument GetSvgDocument(string name) {
+			var basePath = _appEnvironment.ApplicationBasePath;
+			return XDocument.Load(Path.Combine(basePath, $"Client/svg/{name}.svg"));
 		}
 	}
 }
