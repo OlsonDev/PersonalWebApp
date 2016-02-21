@@ -47,9 +47,10 @@ namespace PersonalWebApp.TagHelpers {
 					return $"<!-- File not found: {name} -->";
 				}
 			}
-			var reader = doc.CreateReader();
-			reader.MoveToContent();
-			return reader.ReadInnerXml();
+			using (var reader = doc.CreateReader()) {
+				reader.MoveToContent();
+				return reader.ReadInnerXml();
+			}
 		}
 
 		private XDocument GetSvgDocument(string name) {
