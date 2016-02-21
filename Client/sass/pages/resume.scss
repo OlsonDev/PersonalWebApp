@@ -23,5 +23,8 @@ body.controller-resume {
 #summary-of-my-profession {
 	svg {
 		display: block;
+		path {
+			fill: $white;
+		}
 	}
 }
