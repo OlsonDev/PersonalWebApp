@@ -45,12 +45,13 @@ li {
 
 #web-profiles {
 	a {
+		svg {
+			path, rect {
+				fill: $white;
+			}
+		}
 		&:hover, &:focus {
 			svg {
-				path {
-					fill: $white;
-				}
-
 				&.icon-linkedin-box {
 					path {
 						fill: $linkedin-blue;
@@ -70,8 +71,11 @@ li {
 				}
 
 				&.icon-stackexchange {
-					path {
-						fill: $stackexchange-blue;
+					g {
+						:nth-child(1) { fill: #84d2e9; }
+						:nth-child(2) { fill: url(#stackexchange-gradient-a); }
+						:nth-child(3) { fill: url(#stackexchange-gradient-b); }
+						:nth-child(4) { fill: url(#stackexchange-gradient-c); }
 					}
 				}
 

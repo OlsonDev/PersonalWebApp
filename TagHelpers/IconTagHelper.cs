@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -15,7 +16,6 @@ namespace PersonalWebApp.TagHelpers {
 
 		public string Name { get; set; } = "alert";
 		public string Size { get; set; } = "24";
-		public string Fill { get; set; } = "fff";
 
 		public IconTagHelper(IApplicationEnvironment appEnvironment) {
 			_appEnvironment = appEnvironment;
@@ -31,38 +31,25 @@ namespace PersonalWebApp.TagHelpers {
 			output.Attributes["class"] = "icon-" + Name.Replace(";", " icon-") + classPostfix;
 
 			var names = Name.Split(';');
-			var fills = Fill.Split(';');
-
-			for (var i = 0; i < names.Length; i++) {
-				var name = names[i];
-				var fill = i < fills.Length ? fills[i] : fills[fills.Length - 1];
-				output.Content.AppendHtml(GetPaths(name, fill.Split(',')));
+			foreach (var name in names) {
+				output.Content.AppendHtml(GetSvgContent(name));
 			}
 		}
 
-		private string GetPaths(string name, string[] fills) {
+		private string GetSvgContent(string name) {
 			XDocument doc;
 			try {
 				doc = GetSvgDocument(name);
 			} catch (FileNotFoundException) {
 				try {
 					doc = GetSvgDocument("alert");
-					fills = new [] { "#fc0" };
 				} catch (FileNotFoundException) {
 					return $"<!-- File not found: {name} -->";
 				}
 			}
-			
-			var builder = new StringBuilder();
-			var paths = doc.Descendants(doc.Root.Name.Namespace + "path");
-			var i = 0;
-			foreach (var path in paths) {
-				var fill = fills[Math.Min(i, fills.Length - 1)];
-				path.SetAttributeValue("fill", Regex.Replace(fill, "^#?", "#"));
-				builder.Append(path.ToString(SaveOptions.DisableFormatting));
-				i++;
-			}
-			return builder.ToString();
+			var reader = doc.CreateReader();
+			reader.MoveToContent();
+			return reader.ReadInnerXml();
 		}
 
 		private XDocument GetSvgDocument(string name) {

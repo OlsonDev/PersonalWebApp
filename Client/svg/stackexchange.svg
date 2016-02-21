@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <defs>
+  <linearGradient id="stackexchange-gradient-a" y2="472.85" gradientUnits="userSpaceOnUse" x2="370.74" gradientTransform="matrix(.71833 0 0 .71833 -250.29 -290.41)" y1="468.3" x1="366.34">
+   <stop style="stop-color:#65baf3" offset="0"/>
+   <stop style="stop-color:#65baf3" offset=".75"/>
+   <stop style="stop-color:#36a5ef" offset=".75"/>
+   <stop style="stop-color:#36a5ef" offset="1"/>
+  </linearGradient>
+  <linearGradient id="stackexchange-gradient-b" y2="472.85" gradientUnits="userSpaceOnUse" y1="468.3" gradientTransform="matrix(.71833 0 0 .79814 -250.29 -323.41)" x2="364.43" x1="360.28">
+   <stop style="stop-color:#518fd9" offset="0"/>
+   <stop style="stop-color:#518fd9" offset=".75"/>
+   <stop style="stop-color:#1d6dcd" offset=".75"/>
+   <stop style="stop-color:#1d6dcd" offset="1"/>
+  </linearGradient>
+  <linearGradient id="stackexchange-gradient-c" y2="484.79" gradientUnits="userSpaceOnUse" x2="335.5" gradientTransform="matrix(.71833 0 0 .71833 -234.2 -290.04)" y1="480.98" x1="331.72">
+   <stop style="stop-color:#5479ae" offset="0"/>
+   <stop style="stop-color:#5479ae" offset=".75"/>
+   <stop style="stop-color:#205196" offset=".75"/>
+   <stop style="stop-color:#205196" offset="1"/>
+  </linearGradient>
+ </defs>
+ <g transform="translate(0,-40)">
+  <path fill="#84d2e9" d="m6.0683 42c1.507 0.0036 10.23 0.0319 11.701 0.04533 2.4817 0.02262 2.0635 3.1746 2.0635 3.1746l-15.692 0.000028c0.0512-1.581-0.0246-2.814 1.9283-3.22z"/>
+  <rect fill="url(#stackexchange-gradient-a)" ry="0" height="3.2653" width="15.737" y="45.991" x="4.1315"/>
+  <rect fill="url(#stackexchange-gradient-b)" ry="0" height="3.6281" width="15.737" y="50.367" x="4.1315"/>
+  <path fill="url(#stackexchange-gradient-c)" d="m4.0963 55.229s-0.34236 2.7359 2.2465 2.9158c0.97918 0.06803 7.0748 0.09071 7.0748 0.09071l-0.635 3.764 3.696-3.759c0.38838 0.0044 0.5351-0.02126 1.7338-0.01695 2.0035 0.0072 1.688-2.8912 1.688-2.8912l-15.644-0.136v-0.000021l-0.16034 0.03204z"/>
+ </g>
+</svg>
