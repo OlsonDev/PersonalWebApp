@@ -18,6 +18,7 @@ li {
 
 #main-nav, #web-profiles {
 	text-align: center;
+
 	li {
 		a {
 			color: #fff;
@@ -33,6 +34,7 @@ li {
 #main-nav {
 	li {
 		width: 150px;
+
 		a {
 			&:hover, &:focus {
 				background: $gold;
@@ -42,10 +44,46 @@ li {
 }
 
 #web-profiles {
-	svg {
+	a {
 		&:hover, &:focus {
-			path {
-				fill: $gold;
+			svg {
+				path {
+					fill: $white;
+				}
+
+				&.icon-linkedin-box {
+					path {
+						fill: $linkedin-blue;
+					}
+				}
+
+				&.icon-github-box {
+					path {
+						fill: $github-purple;
+					}
+				}
+
+				&.icon-bitbucket {
+					path {
+						fill: $bitbucket-blue;
+					}
+				}
+
+				&.icon-stackexchange {
+					path {
+						fill: $stackexchange-blue;
+					}
+				}
+
+				&.icon-stackoverflow-separated {
+					path:first-child {
+						fill: $stackoverflow-grey;
+					}
+
+					path:last-child {
+						fill: $stackoverflow-orange;
+					}
+				}
 			}
 		}
 	}
