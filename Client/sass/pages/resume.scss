@@ -17,8 +17,9 @@ body.controller-resume {
 
 #my-focuses {
 	width: 800px;
+
 	svg {
-		margin: 0 30px 5px;
+		margin: 0 36px 5px;
 		display: block;
 		text-align: center;
 
@@ -27,9 +28,13 @@ body.controller-resume {
 		}
 	}
 
+	ul {
+		padding: 0 4px;
+	}
+
 	li {
 		text-align: center;
-		width: 120px;
+		width: 132px;
 		font-weight: bold;
 		text-transform: uppercase;
 	}
@@ -94,6 +99,7 @@ body.controller-resume {
 		&:nth-of-type(1) {
 			box-shadow: 4px 4px 0 $orange;
 			background: lighten($orange, 40%);
+
 			h3 {
 				color: $orange;
 				text-shadow: 1px 1px darken($orange, 20%);
@@ -103,6 +109,7 @@ body.controller-resume {
 		&:nth-of-type(2) {
 			box-shadow: 4px 4px 0 $yellow;
 			background: lighten($yellow, 40%);
+
 			h3 {
 				color: $yellow;
 				text-shadow: 1px 1px darken($yellow, 20%);
@@ -112,6 +119,7 @@ body.controller-resume {
 		&:nth-of-type(3) {
 			box-shadow: 4px 4px 0 $green;
 			background: lighten($green, 45%);
+
 			h3 {
 				color: $green;
 				text-shadow: 1px 1px darken($green, 20%);
@@ -121,6 +129,7 @@ body.controller-resume {
 		&:nth-of-type(4) {
 			box-shadow: 4px 4px 0 $blue;
 			background: lighten($blue, 45%);
+
 			h3 {
 				color: $blue;
 				text-shadow: 1px 1px darken($blue, 20%);
@@ -151,6 +160,7 @@ body.controller-resume {
 
 #education {
 	width: 800px;
+
 	> div {
 		color: $black;
 		background: $white;
@@ -175,6 +185,7 @@ body.controller-resume {
 
 #references {
 	width: 800px;
+
 	> div {
 		color: $black;
 		background: $white;
@@ -186,6 +197,7 @@ body.controller-resume {
 		vertical-align: top;
 		box-shadow: 4px 4px 0 $gold;
 		background: lighten($gold, 40%);
+
 		&:nth-of-type(1) {
 			margin: 0;
 		}
