@@ -1,17 +1,26 @@
-$black: #222222;
-$white: #FFFFFF;
-$grey: #5D5D5D;
-$lightgrey: #AAAAAA;
+$md-primary-color-dark: #303F9F;
+$md-primary-color: #3F51B5;
+$md-primary-color-light: #C5CAE9;
+$md-primary-color-text: #FFFFFF;
+$md-accent-color: #FF9800;
+$md-primary-text-color: #212121;
+$md-secondary-text-color: #727272;
+$md-divider-color: #B6B6B6;
 
-$gold: #ABA47A;
-$brown: #BA7344;
+$code-black: #222222;
+$code-white: #FFFFFF;
+$code-grey: #5D5D5D;
+$code-lightgrey: #AAAAAA;
 
-$red: #D6243B;
-$orange: #C24D43;
-$yellow: #DBA62E;
-$green: #528061;
-$blue: #4184A8;
-$purple: #5957B9;
+$code-gold: #ABA47A;
+$code-brown: #BA7344;
+
+$code-red: #D6243B;
+$code-orange: #C24D43;
+$code-yellow: #DBA62E;
+$code-green: #528061;
+$code-blue: #4184A8;
+$code-purple: #5957B9;
 
 $github-purple: #59297C;
 $linkedin-blue: #007AB5;
@@ -19,3 +28,17 @@ $bitbucket-blue: #1F5081;
 $stackexchange-blue: #58B4F2;
 $stackoverflow-grey: #BCBBBB;
 $stackoverflow-orange: #F48024;
+
+$bg-color: #EEEEEE;
+
+$web-profile-default-color: $md-primary-color-text;
+
+$header-height: 36px;
+$footer-height: 150px;
+
+$footer-color: darken($md-primary-color-dark, 30%);
+
+$focuses-bg-color: $md-accent-color;
+$focuses-color: #FFFFFF;
+
+$keywords-color: $code-lightgrey;

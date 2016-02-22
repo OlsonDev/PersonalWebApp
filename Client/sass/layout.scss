@@ -7,9 +7,13 @@ html {
 	box-sizing: inherit;
 }
 
+html, body {
+	height: 100%;
+	background: $bg-color;
+}
+
 body {
-	background: $black;
-	color: $white;
+	overflow-y: scroll;
 }
 
 li {
@@ -37,9 +41,47 @@ li {
 
 		a {
 			&:hover, &:focus {
-				background: $gold;
+				//background: $gold;
 			}
 		}
+	}
+}
+
+header {
+	background: $md-primary-color-dark;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: $header-height;
+	z-index: 1;
+}
+
+footer {
+	text-align: center;
+	padding: 10px 0;
+	color: $md-primary-color-text;
+	background: $footer-color;
+	height: $footer-height;
+}
+
+#content {
+	padding: ($header-height + 10px) 10px 10px;
+	min-height: 100%;
+	margin: 0 auto (-$footer-height);
+
+	&::after {
+		content: '';
+		display: block;
+		height: $header-height + $footer-height;
+	}
+}
+
+.bullet-points {
+	list-style: disc inside;
+
+	li {
+		display: list-item;
 	}
 }
 
@@ -47,9 +89,10 @@ li {
 	a {
 		svg {
 			path, rect {
-				fill: $white;
+				fill: $web-profile-default-color;
 			}
 		}
+
 		&:hover, &:focus {
 			svg {
 				&.icon-linkedin-box {
@@ -72,10 +115,21 @@ li {
 
 				&.icon-stackexchange {
 					g {
-						:nth-child(1) { fill: #84d2e9; }
-						:nth-child(2) { fill: url(#stackexchange-gradient-a); }
-						:nth-child(3) { fill: url(#stackexchange-gradient-b); }
-						:nth-child(4) { fill: url(#stackexchange-gradient-c); }
+						:nth-child(1) {
+							fill: #84d2e9;
+						}
+
+						:nth-child(2) {
+							fill: url(#stackexchange-gradient-a);
+						}
+
+						:nth-child(3) {
+							fill: url(#stackexchange-gradient-b);
+						}
+
+						:nth-child(4) {
+							fill: url(#stackexchange-gradient-c);
+						}
 					}
 				}
 
@@ -90,23 +144,5 @@ li {
 				}
 			}
 		}
-	}
-}
-
-header, footer {
-	background: #000;
-}
-
-footer {
-	padding: 10px 0;
-}
-
-#content {
-	padding: 10px;
-}
-.bullet-points {
-	list-style: disc inside;
-	li {
-		display: list-item;
 	}
 }

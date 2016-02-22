@@ -7,75 +7,61 @@ body.controller-resume {
 	h2 {
 		font-size: 24px;
 		text-align: center;
-		margin: 25px 0 5px;
+		margin: 0 0 15px;
 	}
 
-	section:not(#content) {
-		margin: 10px 0;
+	section {
+		margin: 20px 0;
+		padding: 20px;
+		background: #fff;
+		border: 1px solid $md-divider-color;
+		box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
+	}
+
+	#content {
+		width: 800px;
+		padding-left: 0;
+		padding-right: 0;
+		background: transparent;
+		box-shadow: none;
+		border: none;
 	}
 }
 
 #my-focuses {
-	width: 800px;
+	div {
+		border-radius: 50%;
+		background: $focuses-bg-color;
+		width: 90px;
+		height: 90px;
+		padding: 15px;
+		display: inline-block;
+		text-align: center;
+		margin: 0 0 10px;
+		box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
+	}
 
 	svg {
-		margin: 0 36px 5px;
-		display: block;
-		text-align: center;
-
 		path {
-			fill: currentColor;
+			fill: $focuses-color;
 		}
 	}
 
 	ul {
-		padding: 0 4px;
+		padding: 0 1px;
 	}
 
 	li {
 		text-align: center;
-		width: 132px;
+		width: 126px;
 		font-weight: bold;
 		text-transform: uppercase;
-	}
-
-	li:nth-child(1) {
-		color: $red;
-	}
-
-	li:nth-child(2) {
-		color: $orange;
-	}
-
-	li:nth-child(3) {
-		color: $yellow;
-	}
-
-	li:nth-child(4) {
-		color: $green;
-	}
-
-	li:nth-child(5) {
-		color: $blue;
-	}
-
-	li:nth-child(6) {
-		color: $purple;
 	}
 }
 
 #mission-statement {
-	width: 800px;
-
 	div {
-		color: $black;
-		background: lighten($red, 45%);
-		width: 800px;
-		padding: 20px;
-		margin-bottom: 10px;
-		position: relative;
 		font-size: 18px;
-		box-shadow: 4px 4px 0 $red;
 	}
 
 	p {
@@ -86,54 +72,16 @@ body.controller-resume {
 }
 
 #work-history {
-	width: 800px;
+	padding: 20px 0;
 
 	> div {
-		color: $black;
-		background: $white;
 		padding: 20px;
-		margin-bottom: 25px;
 		position: relative;
 		font-size: 18px;
+		border-top: 1px solid $md-divider-color;
 
-		&:nth-of-type(1) {
-			box-shadow: 4px 4px 0 $orange;
-			background: lighten($orange, 40%);
-
-			h3 {
-				color: $orange;
-				text-shadow: 1px 1px darken($orange, 20%);
-			}
-		}
-
-		&:nth-of-type(2) {
-			box-shadow: 4px 4px 0 $yellow;
-			background: lighten($yellow, 40%);
-
-			h3 {
-				color: $yellow;
-				text-shadow: 1px 1px darken($yellow, 20%);
-			}
-		}
-
-		&:nth-of-type(3) {
-			box-shadow: 4px 4px 0 $green;
-			background: lighten($green, 45%);
-
-			h3 {
-				color: $green;
-				text-shadow: 1px 1px darken($green, 20%);
-			}
-		}
-
-		&:nth-of-type(4) {
-			box-shadow: 4px 4px 0 $blue;
-			background: lighten($blue, 45%);
-
-			h3 {
-				color: $blue;
-				text-shadow: 1px 1px darken($blue, 20%);
-			}
+		&:first-of-type {
+			border-top: none;
 		}
 
 		h3 {
@@ -145,31 +93,23 @@ body.controller-resume {
 		h4 {
 			font-size: 20px;
 			font-style: italic;
-			color: $grey;
 		}
 
 		.date-range {
 			position: absolute;
 			top: 20px;
 			right: 20px;
-			color: $gold;
 			font-size: 14px;
 		}
 	}
 }
 
 #education {
-	width: 800px;
-
 	> div {
-		color: $black;
-		background: $white;
 		padding: 20px;
 		margin-bottom: 10px;
 		position: relative;
 		font-size: 18px;
-		box-shadow: 4px 4px 0 $purple;
-		background: lighten($purple, 40%);
 	}
 }
 
@@ -184,22 +124,14 @@ body.controller-resume {
 }
 
 #references {
-	width: 800px;
+	padding: 20px 0;
 
 	> div {
-		color: $black;
-		background: $white;
-		width: 390px;
-		height: 140px;
 		padding: 20px;
-		margin: 0 0 0 20px;
-		display: inline-block;
-		vertical-align: top;
-		box-shadow: 4px 4px 0 $gold;
-		background: lighten($gold, 40%);
+		border-top: 1px solid $md-divider-color;
 
-		&:nth-of-type(1) {
-			margin: 0;
+		&:first-of-type {
+			border-top: none;
 		}
 	}
 }

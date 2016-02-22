@@ -26,7 +26,7 @@ namespace PersonalWebApp.TagHelpers {
 			output.TagMode = TagMode.StartTagAndEndTag;
 			output.Attributes["width"] = Size;
 			output.Attributes["height"] = Size;
-			output.Attributes["viewBox"] = "0 0 24 24";
+			output.Attributes["viewBox"] = output.Attributes["viewBox"]?.Value?.ToString() ?? "0 0 24 24";
 			var classPostfix = (" " + output.Attributes["class"]?.Value).TrimEnd();
 			output.Attributes["class"] = "icon-" + Name.Replace(";", " icon-") + classPostfix;
 
