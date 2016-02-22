@@ -3,28 +3,185 @@ body.controller-resume {
 		text-align: center;
 		font-size: 30px;
 	}
+
 	h2 {
 		font-size: 24px;
 		text-align: center;
+		margin: 25px 0 5px;
 	}
+
 	section:not(#content) {
 		margin: 10px 0;
 	}
 }
+
+#summary-of-my-profession {
+	width: 800px;
+	svg {
+		margin: 0 30px 5px;
+		display: block;
+		text-align: center;
+
+		path {
+			fill: currentColor;
+		}
+	}
+
+	li {
+		text-align: center;
+		width: 120px;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	li:nth-child(1) {
+		color: $red;
+	}
+
+	li:nth-child(2) {
+		color: $orange;
+	}
+
+	li:nth-child(3) {
+		color: $yellow;
+	}
+
+	li:nth-child(4) {
+		color: $green;
+	}
+
+	li:nth-child(5) {
+		color: $blue;
+	}
+
+	li:nth-child(6) {
+		color: $purple;
+	}
+}
+
+#mission-statement {
+	width: 800px;
+
+	div {
+		color: $black;
+		background: $white;
+		width: 800px;
+		padding: 20px;
+		margin-bottom: 10px;
+		position: relative;
+		font-size: 18px;
+		box-shadow: 4px 4px 0 $red;
+	}
+
+	p {
+		+ p {
+			margin-top: 20px;
+		}
+	}
+}
+
+#work-history {
+	width: 800px;
+
+	> div {
+		color: $black;
+		background: $white;
+		padding: 20px;
+		margin-bottom: 25px;
+		position: relative;
+		font-size: 18px;
+
+		&:nth-of-type(1) {
+			box-shadow: 4px 4px 0 $orange;
+
+			h3 {
+				color: $orange;
+			}
+		}
+
+		&:nth-of-type(2) {
+			box-shadow: 4px 4px 0 $yellow;
+
+			h3 {
+				color: $yellow;
+			}
+		}
+
+		&:nth-of-type(3) {
+			box-shadow: 4px 4px 0 $green;
+
+			h3 {
+				color: $green;
+			}
+		}
+
+		&:nth-of-type(4) {
+			box-shadow: 4px 4px 0 $blue;
+
+			h3 {
+				color: $blue;
+			}
+		}
+
+		h3 {
+			font-size: 24px;
+			font-weight: bold;
+			text-shadow: 0 0 2px #ccc;
+		}
+
+		h4 {
+			font-size: 20px;
+			font-style: italic;
+			color: $grey;
+		}
+
+		.date-range {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			color: $gold;
+			font-size: 14px;
+		}
+	}
+}
+
+#education {
+	width: 800px;
+	> div {
+		color: $black;
+		background: $white;
+		padding: 20px;
+		margin-bottom: 10px;
+		position: relative;
+		font-size: 18px;
+		box-shadow: 4px 4px 0 $purple;
+	}
+}
+
 #education-sources {
 	li {
 		display: block;
-		color: $gold;
 	}
 }
+
 #education-self-taught-sources {
 	padding: 0 0 0 20px;
 }
-#summary-of-my-profession {
-	svg {
-		display: block;
-		path {
-			fill: $white;
+
+#references {
+	width: 800px;
+	> div {
+		color: $black;
+		background: $white;
+		width: 390px;
+		height: 140px;
+		padding: 20px;
+		margin: 0 0 0 20px;
+		display: inline-block;
+		vertical-align: top;
+		box-shadow: 4px 4px 0 $gold;
+		&:nth-of-type(1) {
+			margin: 0;
 		}
 	}
 }

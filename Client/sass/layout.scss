@@ -104,3 +104,9 @@ footer {
 #content {
 	padding: 10px;
 }
+.bullet-points {
+	list-style: disc inside;
+	li {
+		display: list-item;
+	}
+}

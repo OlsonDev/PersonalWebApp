@@ -1,3 +1,10 @@
 .keywords {
 	color: $grey;
+	text-align: center;
+	li {
+		margin: 0 10px;
+		font-size: 16px;
+		font-weight: bold;
+		color: $lightgrey;
+	}
 }
