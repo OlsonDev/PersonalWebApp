@@ -15,7 +15,7 @@ body.controller-resume {
 	}
 }
 
-#summary-of-my-profession {
+#my-focuses {
 	width: 800px;
 	svg {
 		margin: 0 30px 5px;
@@ -64,7 +64,7 @@ body.controller-resume {
 
 	div {
 		color: $black;
-		background: $white;
+		background: lighten($red, 45%);
 		width: 800px;
 		padding: 20px;
 		margin-bottom: 10px;
@@ -93,33 +93,37 @@ body.controller-resume {
 
 		&:nth-of-type(1) {
 			box-shadow: 4px 4px 0 $orange;
-
+			background: lighten($orange, 40%);
 			h3 {
 				color: $orange;
+				text-shadow: 1px 1px darken($orange, 20%);
 			}
 		}
 
 		&:nth-of-type(2) {
 			box-shadow: 4px 4px 0 $yellow;
-
+			background: lighten($yellow, 40%);
 			h3 {
 				color: $yellow;
+				text-shadow: 1px 1px darken($yellow, 20%);
 			}
 		}
 
 		&:nth-of-type(3) {
 			box-shadow: 4px 4px 0 $green;
-
+			background: lighten($green, 45%);
 			h3 {
 				color: $green;
+				text-shadow: 1px 1px darken($green, 20%);
 			}
 		}
 
 		&:nth-of-type(4) {
 			box-shadow: 4px 4px 0 $blue;
-
+			background: lighten($blue, 45%);
 			h3 {
 				color: $blue;
+				text-shadow: 1px 1px darken($blue, 20%);
 			}
 		}
 
@@ -155,6 +159,7 @@ body.controller-resume {
 		position: relative;
 		font-size: 18px;
 		box-shadow: 4px 4px 0 $purple;
+		background: lighten($purple, 40%);
 	}
 }
 
@@ -180,6 +185,7 @@ body.controller-resume {
 		display: inline-block;
 		vertical-align: top;
 		box-shadow: 4px 4px 0 $gold;
+		background: lighten($gold, 40%);
 		&:nth-of-type(1) {
 			margin: 0;
 		}
