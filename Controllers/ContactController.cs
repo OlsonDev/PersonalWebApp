@@ -20,7 +20,7 @@ namespace PersonalWebApp.Controllers {
 		}
 
 		public async Task<IActionResult> Info(string gRecaptchaResponse) {
-			var secret = _configuration["GRecaptchaSecret"];
+			var secret = _configuration["Data:GRecaptchaSecret"];
 
 			var pairs = new Dictionary<string, string> { ["secret"] = secret, ["response"] = gRecaptchaResponse };
 			var httpContent = new FormUrlEncodedContent(pairs);
@@ -32,8 +32,8 @@ namespace PersonalWebApp.Controllers {
 				var apiResponse = await response.Content.ReadAsStringAsync();
 				dynamic apiResponseObject = JObject.Parse(apiResponse);
 
-				var email = _configuration["Email"];
-				var phone = _configuration["Phone"];
+				var email = _configuration["Data:Email"];
+				var phone = _configuration["Data:Phone"];
 
 				return (bool)apiResponseObject.success
 					? Json(new { error = false, email, phone })

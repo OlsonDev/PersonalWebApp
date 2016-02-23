@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Microsoft.AspNet.Mvc.ApplicationModels;
+using PersonalWebApp.Extensions;
 
 namespace PersonalWebApp.Conventions {
 	// See https://github.com/aspnet/Routing/issues/186
@@ -17,13 +17,13 @@ namespace PersonalWebApp.Conventions {
 			foreach (var controller in application.Controllers) {
 				if (controller.AttributeRoutes.Count != 0) continue;
 
-				var controllerTmpl = Slugify(controller.ControllerName);
+				var controllerTmpl = controller.ControllerName.PascalToSlug();
 				controller.AttributeRoutes.Add(new AttributeRouteModel { Template = controllerTmpl });
 
 				var actionsToAdd = new List<ActionModel>();
 				foreach (var action in controller.Actions) {
 					if (action.AttributeRouteModel != null) continue;
-					var actionSlug = Slugify(action.ActionName);
+					var actionSlug = action.ActionName.PascalToSlug();
 					var actionTmpl = $"{actionSlug}/{{id?}}";
 					if (actionSlug == DefaultAction) {
 						var defaultActionModel = new ActionModel(action) { AttributeRouteModel = new AttributeRouteModel { Template = "" } };
@@ -39,10 +39,6 @@ namespace PersonalWebApp.Conventions {
 					controller.Actions.Add(action);
 				}
 			}
-		}
-
-		private string Slugify(string pascalString) {
-			return Regex.Replace(pascalString, "([a-z])([A-Z])", "$1-$2").ToLower();
 		}
 	}
 }
