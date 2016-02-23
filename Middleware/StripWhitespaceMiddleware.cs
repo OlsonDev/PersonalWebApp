@@ -30,6 +30,7 @@ namespace PersonalWebApp.Middleware {
 						await body.WriteAsync(bytes, 0, bytes.Length);
 					}
 				} else {
+					intercept.Seek(0, SeekOrigin.Begin);
 					await intercept.CopyToAsync(body);
 				}
 			}
