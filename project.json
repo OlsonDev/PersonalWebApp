@@ -39,6 +39,7 @@
 	],
 	"publishExclude": [
 		"node_modules",
+		"Data",
 		"**.user",
 		"**.vspscc"
 	],
