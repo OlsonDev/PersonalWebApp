@@ -22,6 +22,7 @@ namespace PersonalWebApp.Models.Db {
 			BuildSkill(3, "ASP.NET", "server", "framework");
 			BuildSkill(4, "ASP.NET MVC", "server", "framework");
 			BuildSkill(4, "Entity Framework", "server", "framework", "database");
+			BuildSkill(3, "NHibernate", "server", "framework", "database");
 			BuildSkill(3, "Java", "language");
 			BuildSkill(5, "Railo", "framework", "server");
 			BuildSkill(5, "Railo CFML", "language");
@@ -35,6 +36,7 @@ namespace PersonalWebApp.Models.Db {
 			BuildSkill(4, "SCSS", "language", "web");
 			BuildSkill(5, "JavaScript", "language", "web", "server");
 			BuildSkill(3, "TypeScript", "language", "web", "server");
+			BuildSkill(2, "Dart", "language", "web", "server");
 			BuildSkill(4, "lodash", "library", "web", "server");
 			BuildSkill(5, "jQuery", "library", "web");
 			BuildSkill(5, "jQuery UI", "library", "web");
@@ -46,6 +48,7 @@ namespace PersonalWebApp.Models.Db {
 			BuildSkill(4, "NodeJS", "framework", "web", "server");
 			BuildSkill(4, "npm", "tool");
 			BuildSkill(4, "gulp", "tool");
+			BuildSkill(4, "grunt", "tool");
 			BuildSkill(4, "bower", "tool");
 			BuildSkill(4, "typings", "tool");
 			BuildSkill(5, "svn", "tool");
@@ -96,6 +99,7 @@ namespace PersonalWebApp.Models.Db {
 			BuildSkill(5, "SQL Server Management Studio", "tool", "app");
 			BuildSkill(2, "MySQL Workbench", "tool", "app");
 			BuildSkill(2, "Android Studio", "tool", "app");
+			BuildSkill(3, "Xcode", "tool", "app");
 
 			BuildSkill(3, "Inkscape", "tool", "app");
 			BuildSkill(3, "Paint.NET", "tool", "app");
