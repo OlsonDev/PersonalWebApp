@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="210" width="540" version="1.1" y="0px" x="0px" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 18 7">
+	<path fill="#cb3837" d="m0 0h18v6h-9v1h-4v-1h-5zm1 5h2v-3h1v3h1v-4h-4zm5-4v5h2v-1h2v-4zm2 1h1v2h-1zm3-1v4h2v-3h1v3h1v-3h1v3h1v-4z"/>
+	<g fill="#fff">
+		<polygon points="3 2 4 2 4 5 5 5 5 1 1 1 1 5 3 5"/>
+		<path d="m6 1v5h2v-1h2v-4zm3 3h-1v-2h1z"/>
+		<polygon points="13 5 13 2 14 2 14 5 15 5 15 2 16 2 16 5 17 5 17 1 11 1 11 5"/>
+	</g>
+</svg>

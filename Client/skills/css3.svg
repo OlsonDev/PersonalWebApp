@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="420px" width="298px" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 298 420">
+	<title>Slice 1</title>
+	<description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+	<g fill-rule="evenodd" fill="none">
+		<path fill="#131313" d="m233.16 15.681h-24.68l25.67 27.859v13.261h-52.88v-15.526h25.67l-25.67-27.86v-13.28h51.89v15.546zm-62.37 0h-24.69l25.67 27.859v13.261h-52.88v-15.526h25.67l-25.67-27.86v-13.28h51.9v15.546zm-61.77 0.631h-26.642v24.313h26.642v16.176h-45.576v-56.666h45.576v16.177z"/>
+		<path fill="#1572B6" d="m27.142 386.29l-27.071-303.62h297.45l-27.1 303.57-121.81 33.77-121.47-33.72z"/>
+		<path fill="#33A9DC" d="m148.8 394.2l98.42-27.29 23.16-259.41h-121.58v286.7z"/>
+		<g transform="translate(55 142)">
+			<path fill="#fff" d="m93.797 75.496h49.273l3.41-38.132h-52.683v-37.239h0.129 93.244l-0.89 9.991-9.15 102.61h-83.333v-37.234z"/>
+			<path fill="#EBEBEB" d="m94.02 172.2l-0.163 0.05-41.472-11.2-2.652-29.7h-20.151-17.228l5.216 58.47 76.278 21.18 0.172-0.05v-38.75z"/>
+			<path fill="#fff" d="m139.91 111.16l-4.49 49.87-41.529 11.21v38.74l76.339-21.16 0.56-6.29 6.48-72.37h-37.36z"/>
+			<path fill="#EBEBEB" d="m93.926 0.125v23.128 14.019 0.092h-89.828-0.119l-0.747-8.37-1.697-18.878-0.89-9.991h93.281z"/>
+			<path fill="#EBEBEB" d="m93.797 75.5v23.129 14.021 0.09h-40.828-0.119l-0.746-8.37-1.698-18.879-0.89-9.991h44.281z"/>
+		</g>
+	</g>
+</svg>
