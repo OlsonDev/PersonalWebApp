@@ -40,9 +40,13 @@ filterTags.addEventListener('click', (e) => {
 clearFilters.addEventListener('click', () => {
 	search.value = '';
 	tags = [];
-	const elems = skills.children;
+	let elems = skills.children;
 	for (let i = 0; i < elems.length; i++) {
 		elems[i].classList.remove('filtered');
+	}
+	elems = filterTags.children;
+	for (let i = 0; i < elems.length; i++) {
+		elems[i].classList.remove('active');
 	}
 	search.focus();
 });
