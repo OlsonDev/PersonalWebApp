@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="198" height="65">
+	<defs>
+		<rect id="bar" width="34" height="10"/>
+		<g id="r0">
+			<use xlink:href="#bar" fill="#EEE"/>
+			<use xlink:href="#bar" fill="#EEE" x="41"/>
+			<use xlink:href="#bar" fill="#EEE" x="82"/>
+			<use xlink:href="#bar" fill="#EEE" x="123"/>
+			<use xlink:href="#bar" fill="#EEE" x="164"/>
+		</g>
+		<g id="r1">
+			<use xlink:href="#r0"/>
+			<use xlink:href="#bar" fill="#FFA000"/>
+		</g>
+		<g id="r2">
+			<use xlink:href="#r1"/>
+			<use xlink:href="#bar" fill="#FBC02D" x="41"/>
+		</g>
+		<g id="r3">
+			<use xlink:href="#r2"/>
+			<use xlink:href="#bar" fill="#689F38" x="82"/>
+		</g>
+		<g id="r4">
+			<use xlink:href="#r3"/>
+			<use xlink:href="#bar" fill="#388E3C" x="123"/>
+		</g>
+		<g id="r5">
+			<use xlink:href="#r4"/>
+			<use xlink:href="#bar" fill="#1976D2" x="164"/>
+		</g>
+	</defs>
+	<use xlink:href="#r0"/>
+	<use xlink:href="#r1" y="11"/>
+	<use xlink:href="#r2" y="22"/>
+	<use xlink:href="#r3" y="33"/>
+	<use xlink:href="#r4" y="44"/>
+	<use xlink:href="#r5" y="55"/>
+</svg>

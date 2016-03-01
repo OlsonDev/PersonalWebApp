@@ -1,1 +1,14 @@
+@using System.Threading.Tasks
+@using PersonalWebApp.Extensions
+@model IEnumerable<PersonalWebApp.Models.Conceptual.Skill>
 <p>Skills</p>
+
+<ol id="skills">
+	@foreach (var m in Model) {
+		<li class="skill-@m.Code tag-@m.Tags.JoinWithPrefix("tag-")" title="@m.Name">
+			<div class="icon icon-@m.Code"></div>
+			<h3>@m.Name</h3>
+			<div class="rating rating-@m.Rating"></div>
+		</li>
+	}
+</ol>

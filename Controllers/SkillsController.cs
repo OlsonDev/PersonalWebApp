@@ -11,7 +11,7 @@ namespace PersonalWebApp.Controllers {
 
 		public IActionResult Index() {
 			ViewData["Title"] = "My skills";
-			return View();
+			return View(_skillService.GetAll());
 		}
 
 		public IActionResult Json() {

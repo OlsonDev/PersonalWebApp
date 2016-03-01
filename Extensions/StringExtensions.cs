@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace PersonalWebApp.Extensions {
@@ -45,6 +47,11 @@ namespace PersonalWebApp.Extensions {
 				? str
 				: char.ToLowerInvariant(str[0]) + str.Substring(1)
 			;
+		}
+
+		public static string JoinWithPrefix(this IEnumerable<string> values, string prefix) {
+			var str = String.Join(prefix, values);
+			return str.Length > 0 ? prefix + str : string.Empty;
 		}
 	}
 }
