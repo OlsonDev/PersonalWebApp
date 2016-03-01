@@ -21,12 +21,13 @@ namespace PersonalWebApp.Models.Db {
 			BuildSkill(2, "Visual Basic 6", "language");
 			BuildSkill(3, "ASP.NET", "server", "framework");
 			BuildSkill(4, "ASP.NET MVC", "server", "framework");
+			BuildSkill(3, "IIS", "server");
 			BuildSkill(4, "Entity Framework", "server", "framework", "database");
 			BuildSkill(3, "NHibernate", "server", "framework", "database");
 			BuildSkill(3, "Java", "language");
-			BuildSkill(5, "Railo", "framework", "server");
+			BuildSkill(5, "Railo Server", "framework", "server");
 			BuildSkill(5, "Railo CFML", "language");
-			BuildSkill(4, "Adobe ColdFusion", "framework", "server");
+			BuildSkill(4, "Adobe ColdFusion Server", "framework", "server");
 			BuildSkill(5, "Adobe CFML", "language");
 			BuildSkill(4, "Apache Tomcat", "server");
 			BuildSkill(5, "HTML5", "language", "web");
@@ -81,10 +82,8 @@ namespace PersonalWebApp.Models.Db {
 			BuildSkill(3, "XNA", "library", "framework", "desktop");
 			BuildSkill(3, "Unreal Engine", "framework", "web", "desktop", "app");
 			BuildSkill(3, "Unity", "framework", "web", "desktop", "app");
-
 			BuildSkill(3, "Bash", "tool", "language");
 			BuildSkill(2, "cmd", "tool", "language");
-
 			BuildSkill(4, "Eclipse", "tool", "app");
 			BuildSkill(4, "ColdFusion Builder", "tool", "app");
 			BuildSkill(4, "Dreamweaver", "tool", "app");
@@ -100,16 +99,12 @@ namespace PersonalWebApp.Models.Db {
 			BuildSkill(2, "MySQL Workbench", "tool", "app");
 			BuildSkill(2, "Android Studio", "tool", "app");
 			BuildSkill(3, "Xcode", "tool", "app");
-
 			BuildSkill(3, "Inkscape", "tool", "app");
 			BuildSkill(3, "Paint.NET", "tool", "app");
 			BuildSkill(2, "Adobe PhotoShop", "tool", "app");
-
 			BuildSkill(5, "GitHub Desktop", "tool", "app");
 			BuildSkill(4, "SourceTree", "tool", "app");
-
 			BuildSkill(2, "clang", "tool");
-
 			BuildSkill(5, "Microsoft Excel", "tool", "app");
 			BuildSkill(4, "Microsoft Word", "tool", "app");
 			BuildSkill(4, "Microsoft Outlook", "tool", "app");
