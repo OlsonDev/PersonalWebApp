@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using PersonalWebApp.Models.Db;
-using PersonalWebApp.Models.Entity;
+using Entity = PersonalWebApp.Models.Entity;
+using Conceptual = PersonalWebApp.Models.Conceptual;
 
 namespace PersonalWebApp.Services {
 	public class SkillService : BaseService {
@@ -12,16 +13,74 @@ namespace PersonalWebApp.Services {
 			_dbContext = dbContext;
 		}
 
-		public Skill GetById(string skillId) => GetById(Guid.Parse(skillId));
+		public Conceptual.Skill GetById(string skillId) => GetById(Guid.Parse(skillId));
 
-		public Skill GetById(Guid skillId) {
-			var skill = _dbContext.Skills.FirstOrDefault(s => s.SkillId == skillId);
-			if (skill == null) {
-				throw new InvalidOperationException($"Skill with SkillId {skillId} does not exist.");
+		public Conceptual.Skill GetById(Guid skillId) {
+			var results =
+				from s in _dbContext.Skills
+				join st in _dbContext.SkillTaggings on s.SkillId equals st.SkillId
+				join t in _dbContext.SkillTags on st.TagId equals t.TagId
+				where s.SkillId == skillId
+				select new { s.SkillId, s.Code, s.Name, s.Rating, Tag = t.Code }
+			;
+
+			var iter = results.GetEnumerator();
+			if (!iter.MoveNext()) {
+				throw new InvalidOperationException($"Skill with SkillId {skillId} does not exist");
 			}
+
+			var first = iter.Current;
+			var skill = new Conceptual.Skill {
+				SkillId = first.SkillId,
+				Code = first.Code,
+				Name = first.Name,
+				Rating = first.Rating,
+				Tags = new List<string> { first.Tag }
+			};
+
+			while (iter.MoveNext()) {
+				skill.Tags.Add(iter.Current.Tag);
+			}
+
 			return skill;
 		}
 
-		public IEnumerable<Skill> GetAll() => _dbContext.Skills.ToList();
+		public IEnumerable<Conceptual.Skill> GetAll() {
+			var results =
+				from s in _dbContext.Skills
+				join st in _dbContext.SkillTaggings on s.SkillId equals st.SkillId
+				join t in _dbContext.SkillTags on st.TagId equals t.TagId
+				select new { s.SkillId, s.Code, s.Name, s.Rating, Tag = t.Code }
+			;
+
+			using (var iter = results.GetEnumerator()) {
+				if (!iter.MoveNext()) yield break;
+
+				var cur = iter.Current;
+				var skill = new Conceptual.Skill {
+					SkillId = cur.SkillId,
+					Code = cur.Code,
+					Name = cur.Name,
+					Rating = cur.Rating,
+					Tags = new List<string> { cur.Tag }
+				};
+
+				while (iter.MoveNext()) {
+					cur = iter.Current;
+					if (cur.SkillId != skill.SkillId) {
+						yield return skill;
+						skill = new Conceptual.Skill {
+							SkillId = cur.SkillId,
+							Code = cur.Code,
+							Name = cur.Name,
+							Rating = cur.Rating,
+							Tags = new List<string>()
+						};
+					}
+					skill.Tags.Add(cur.Tag);
+				}
+				yield return skill;
+			}
+		}
 	}
 }
