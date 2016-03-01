@@ -1,14 +1,37 @@
 @using System.Threading.Tasks
 @using PersonalWebApp.Extensions
-@model IEnumerable<PersonalWebApp.Models.Conceptual.Skill>
-<p>Skills</p>
+@model PersonalWebApp.Models.ViewModels.SkillsViewModel
+
+<div id="skills-filter" class="collapsed">
+	<header>
+		<a href="#" id="filter-form-toggle">
+			<icon name="filter-outline"/>
+			<h3>Search my skills</h3>
+			<icon name="chevron-down"/>
+			<icon name="chevron-up"/>
+		</a>
+	</header>
+	<form>
+		<h3>Tagged&hellip;</h3>
+		<ol id="filter-tags">
+			@foreach (var tag in Model.Tags) {
+				<li class="tag-@tag.Code">@tag.Name</li>
+			}
+		</ol>
+		<h3>Named&hellip;</h3>
+		<input type="search" placeholder="Search by name" />
+		<button type="button" id="clear-filters">Clear</button>
+	</form>
+</div>
 
 <ol id="skills">
-	@foreach (var m in Model) {
-		<li class="skill-@m.Code tag-@m.Tags.JoinWithPrefix("tag-")" title="@m.Name">
-			<div class="icon icon-@m.Code"></div>
-			<h3>@m.Name</h3>
-			<div class="rating rating-@m.Rating"></div>
+	@foreach (var skill in Model.Skills) {
+		<li class="skill-@skill.Code @skill.Tags.JoinWithPrefix("tag-")">
+			<div class="icon icon-@skill.Code"></div>
+			<h3 title="@skill.Name">@skill.Name</h3>
+			<div class="rating rating-@skill.Rating" title="Skill level: @skill.Rating/5"></div>
 		</li>
 	}
 </ol>
+
+<script src="/scripts/skills.js"></script>

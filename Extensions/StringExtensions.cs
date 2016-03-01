@@ -49,8 +49,8 @@ namespace PersonalWebApp.Extensions {
 			;
 		}
 
-		public static string JoinWithPrefix(this IEnumerable<string> values, string prefix) {
-			var str = String.Join(prefix, values);
+		public static string JoinWithPrefix(this IEnumerable<string> values, string prefix, string separator = " ") {
+			var str = String.Join(separator + prefix, values);
 			return str.Length > 0 ? prefix + str : string.Empty;
 		}
 	}

@@ -48,7 +48,7 @@ li {
 	}
 }
 
-header {
+body > header {
 	background: $md-primary-color-dark;
 	position: fixed;
 	top: 0;
@@ -58,7 +58,7 @@ header {
 	z-index: 1;
 }
 
-footer {
+body > footer {
 	text-align: center;
 	padding: 10px 0;
 	color: $md-primary-color-text;

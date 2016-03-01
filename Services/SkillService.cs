@@ -82,5 +82,13 @@ namespace PersonalWebApp.Services {
 				yield return skill;
 			}
 		}
+
+		public IEnumerable<Conceptual.SkillTag> GetAllSkillTags() => _dbContext.SkillTags.Select(
+			st => new Conceptual.SkillTag {
+				TagId = st.TagId,
+				Code = st.Code,
+				Name = st.Name
+			}
+		);
 	}
 }
