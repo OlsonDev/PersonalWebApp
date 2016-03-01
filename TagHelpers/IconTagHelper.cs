@@ -1,12 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.IO;
 using System.Xml.Linq;
 using Microsoft.AspNet.Razor.TagHelpers;
-using Microsoft.AspNet.Server.Kestrel;
 using Microsoft.Extensions.PlatformAbstractions;
 
 namespace PersonalWebApp.TagHelpers {
