@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using PersonalWebApp.Models.Db;
-using Entity = PersonalWebApp.Models.Entity;
 using Conceptual = PersonalWebApp.Models.Conceptual;
 
 namespace PersonalWebApp.Services {
@@ -50,6 +49,7 @@ namespace PersonalWebApp.Services {
 				from s in _dbContext.Skills
 				join st in _dbContext.SkillTaggings on s.SkillId equals st.SkillId
 				join t in _dbContext.SkillTags on st.TagId equals t.TagId
+				orderby s.Name
 				select new { s.SkillId, s.Code, s.Name, s.Rating, Tag = t.Code }
 			;
 
