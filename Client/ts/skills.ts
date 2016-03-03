@@ -24,16 +24,32 @@ filterTags.addEventListener('click', (e) => {
 	target.classList.toggle('active');
 	const tagResult = /(?:^| )(tag-\S+)/.exec(target.className);
 	const tag = tagResult.length ? tagResult[1] : '';
-
+	if (!tag) return;
+	
 	if (tags.indexOf(tag) === -1) {
 		// Add to filter
+		tags.push(tag);
 		const elems = skills.querySelectorAll(`:not(.${tag})`);
 		for (let i = 0; i < elems.length; i++) {
 			elems[i].classList.add('filtered');
 		}
 	} else {
 		// Remove from filter
-		console.log('TODO: Remove from filter');
+		const index = tags.indexOf(tag);
+		tags.splice(index, 1);
+		const elems = skills.querySelectorAll(`:not(.${tag})`);
+		for (let i = 0; i < elems.length; i++) {
+			const elem = elems[i];
+			let hasEveryTag = true;
+			for (let otherTag of tags) {
+				if (!elem.classList.contains(otherTag)) {
+					hasEveryTag = false;
+					break;
+				}
+			}
+			if (!hasEveryTag) continue;
+			elem.classList.remove('filtered');
+		}
 	}
 });
 
