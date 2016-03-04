@@ -21,5 +21,10 @@ namespace BuildSpritesheet {
 			var reSearchPattern = new Regex(regexPattern, RegexOptions.IgnoreCase);
 			return Directory.EnumerateFiles(path, "*", searchOption).Where(file => reSearchPattern.IsMatch(Path.GetFileName(file)));
 		}
+
+		public static void Empty(this DirectoryInfo directory) {
+			foreach (var file in directory.GetFiles()) file.Delete();
+			foreach (var subDirectory in directory.GetDirectories()) subDirectory.Delete(true);
+		}
 	}
 }

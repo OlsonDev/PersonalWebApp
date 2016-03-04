@@ -1,19 +1,26 @@
-﻿using System;
+﻿#if DNX451
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Linq;
+using System.Text;
 
 namespace BuildSpritesheet {
 	class Program {
+		private const int DesiredSize = 60;
+
 		static void Main(string[] args) {
-			Directory.CreateDirectory(GetOutputPath());
+			var outputPath = GetOutputPath();
+			Directory.CreateDirectory(outputPath);
+			var outputDirectory = new DirectoryInfo(outputPath);
+			outputDirectory.Empty();
 
-			var logos = GetLogos();
-
-			foreach (var inputFilePath in logos) {
+			var inputFilePaths = GetInputFilePaths();
+			foreach (var inputFilePath in inputFilePaths) {
 				var ext = Path.GetExtension(inputFilePath)?.ToLower();
 				var outputFilePath = Path.ChangeExtension(CombinePath(GetOutputPath(), Path.GetFileName(inputFilePath)), "png");
 				switch (ext) {
@@ -33,7 +40,69 @@ namespace BuildSpritesheet {
 
 			Console.WriteLine();
 			Console.WriteLine("Done processing individual files");
+
+			var outputPngFilePaths = GetOutputPngFilePaths().ToList();
+			var num = outputPngFilePaths.Count;
+			var extents = GetSpritesheetExtents(num);
+
+			var x = 0;
+			var y = 0;
+			var css = new StringBuilder();
+			css.AppendLine(".icon { background: url(/skills-spritesheet.png) no-repeat; }");
+			using (var newImg = new Bitmap(extents.Width, extents.Height)) {
+				using (var graphics = Graphics.FromImage(newImg)) {
+					graphics.SmoothingMode = SmoothingMode.HighQuality;
+					graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+					graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+					foreach (var outputPngFilePath in outputPngFilePaths) {
+						using (var srcImg = Image.FromFile(outputPngFilePath)) {
+							var dest = new Rectangle(x, y, DesiredSize, DesiredSize);
+							graphics.DrawImage(srcImg, dest);
+							srcImg.Dispose();
+							var fileNoExt = Path.GetFileNameWithoutExtension(outputPngFilePath);
+							var xCss = x == 0 ? "0" : $"-{x}px";
+							var yCss = y == 0 ? "0" : $"-{y}px";
+							css.AppendLine($".icon-{fileNoExt} {{ background-position: {xCss} {yCss}; }}");
+							x += 64;
+							if (x < extents.Width) continue;
+							x = 0;
+							y += 64;
+						}
+					}
+				}
+				newImg.Save(CombinePath(outputPath, "../skills-spritesheet.png"), ImageFormat.Png);
+			}
+
+			css.Length--; // Remove trailing newline
+			File.WriteAllText(CombinePath(outputPath, "../css/skills-spritesheet.css"), css.ToString());
+
+			Console.WriteLine("Done building spritesheet");
+
 			Console.ReadKey();
+		}
+
+		private static Rectangle GetSpritesheetExtents(int num) {
+			var leastWastefulExtents = new Rectangle(0, 0, num * 64, 64);
+			if (num <= 8) return leastWastefulExtents;
+			var leastNumWastedSpots = int.MaxValue;
+			var lowerBound = (int)Math.Floor(Math.Sqrt(num));
+			for (var x = lowerBound; x < num; x++) {
+				var y = num / x;
+				if (y * x < num) y++;
+				var waste = y * x - num;
+				// Don't replace if equal; lower-valued x is more square (preferred)
+				if (waste >= leastNumWastedSpots) continue;
+				leastNumWastedSpots = waste;
+				// Easier to reason about rows that are multiples of 2
+				if (y % 2 == 0 && x % 2 != 0) {
+					leastWastefulExtents.Width = y * 64;
+					leastWastefulExtents.Height = x * 64;
+				} else {
+					leastWastefulExtents.Width = x * 64;
+					leastWastefulExtents.Height = y * 64;
+				}
+			}
+			return leastWastefulExtents;
 		}
 
 		private static void ProcessJpg(string inputFilePath, string outputFilePath) {
@@ -48,19 +117,19 @@ namespace BuildSpritesheet {
 
 		private static void ProcessImage(string inputFilePath, string outputFilePath) {
 			using (var srcImg = Image.FromFile(inputFilePath)) {
-				using (var newImg = new Bitmap(60, 60)) {
+				using (var newImg = new Bitmap(DesiredSize, DesiredSize)) {
 					using (var graphics = Graphics.FromImage(newImg)) {
 						graphics.SmoothingMode = SmoothingMode.HighQuality;
 						graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
 						graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-						var dest = new Rectangle(0, 0, 60, 60);
+						var dest = new Rectangle(0, 0, DesiredSize, DesiredSize);
 						if (srcImg.Width < srcImg.Height) {
-							dest.Width = (int)(60.0d * srcImg.Width / srcImg.Height);
-							dest.X = (60 - dest.Width) / 2;
+							dest.Width = (int)(DesiredSize * (double)srcImg.Width / srcImg.Height);
+							dest.X = (DesiredSize - dest.Width) / 2;
 						} else {
-							dest.Height = (int)(60.0d * srcImg.Height / srcImg.Width);
-							dest.Y = (60 - dest.Height) / 2;
+							dest.Height = (int)(DesiredSize * (double)srcImg.Height / srcImg.Width);
+							dest.Y = (DesiredSize - dest.Height) / 2;
 						}
 
 						graphics.DrawImage(srcImg, dest);
@@ -89,9 +158,14 @@ namespace BuildSpritesheet {
 			ProcessImage(outputFilePath, outputFilePath);
 		}
 
-		private static IEnumerable<string> GetLogos() {
+		private static IEnumerable<string> GetInputFilePaths() {
 			var sourcePath = GetSourcePath();
 			return DirectoryExtensions.GetFilesByExtensionList(sourcePath, ".jpg,.png,.svg");
+		}
+
+		private static IEnumerable<string> GetOutputPngFilePaths() {
+			var outputPath = GetOutputPath();
+			return DirectoryExtensions.GetFilesByExtensionList(outputPath, ".png");
 		}
 
 		static string GetBasePath() {
@@ -117,3 +191,4 @@ namespace BuildSpritesheet {
 		}
 	}
 }
+#endif
