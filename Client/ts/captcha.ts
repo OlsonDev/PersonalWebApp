@@ -1,7 +1,6 @@
 ﻿function renderCaptcha() {
 	grecaptcha.render('grecaptcha', {
 		sitekey: '6LeIihgTAAAAAGJIaWSkdtXxZYiGY4y5ziVDOBbY'
-		, theme: 'dark'
 		, callback: (response: string) => {
 			const xhr = new XMLHttpRequest();
 			xhr.open('post', '/contact/info');
