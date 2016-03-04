@@ -100,31 +100,26 @@
 		height: 148px;
 		margin: 5px;
 		padding: 20px;
-		background-color: rgba(255,255,255,0);
-		border: 1px solid rgba($md-divider-color, 0);
+		background: #FFF;
+		border: 1px solid $md-divider-color;
 		text-align: center;
 		transition: border-color 166ms 333ms, background-color 166ms 333ms, box-shadow 333ms ease-in;
 
 		&.filtered {
-			opacity: 0.5;
+			display: none;
 		}
 
 		&:hover {
-			transition: border-color 166ms, background-color 166ms, box-shadow 333ms 83ms;
-			background-color: rgba(255,255,255,1);
-			border-color: $md-divider-color;
+			transition: box-shadow 333ms 83ms;
 			box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
-			opacity: 1;
-
+			
 			.rating {
 				display: block;
 			}
 		}
 
 		.icon {
-			background: #AAA;
 			margin: 0 auto;
-			border-radius: 40%;
 			height: 60px;
 			width: 60px;
 		}
