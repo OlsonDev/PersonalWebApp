@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if DNX451
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -28,3 +29,4 @@ namespace BuildSpritesheet {
 		}
 	}
 }
+#endif
