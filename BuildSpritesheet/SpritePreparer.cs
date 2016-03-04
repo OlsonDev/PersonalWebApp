@@ -68,7 +68,7 @@ namespace BuildSpritesheet {
 			var inputFilePaths = Config.GetInputFilePaths();
 			foreach (var inputFilePath in inputFilePaths) {
 				var ext = Path.GetExtension(inputFilePath)?.ToLower();
-				var outputFilePath = Path.ChangeExtension(Config.CombinePath(Config.OutputPath, Path.GetFileName(inputFilePath)),
+				var outputFilePath = Path.ChangeExtension(Config.CombinePath(Config.WwwRootSkillsPath, Path.GetFileName(inputFilePath)),
 					"png");
 				switch (ext) {
 					case ".jpg":

@@ -10,12 +10,19 @@ namespace BuildSpritesheet {
 
 			Console.WriteLine();
 			Console.WriteLine("Done processing individual files");
+
+			Console.WriteLine();
+			SpritesheetBuilder.BuildSpritesheet();
+
+			Console.WriteLine();
+			Console.WriteLine("Done building spritesheet");
+
 			Console.ReadKey();
 		}
 
 		private static void PrepareOutputDirectory() {
-			Directory.CreateDirectory(Config.OutputPath);
-			var outputDirectory = new DirectoryInfo(Config.OutputPath);
+			Directory.CreateDirectory(Config.WwwRootSkillsPath);
+			var outputDirectory = new DirectoryInfo(Config.WwwRootSkillsPath);
 			outputDirectory.Empty();
 		}
 	}
