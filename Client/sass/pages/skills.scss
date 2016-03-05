@@ -2,14 +2,14 @@
 	width: 800px;
 	margin: 0 auto 10px;
 	background-color: #fff;
-	border-color: $md-divider-color;
+	border-color: $divider-color;
 	box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
 
 	header {
 		padding: 20px;
 
 		a {
-			color: $md-primary-text-color;
+			color: $text-color;
 			position: relative;
 			width: 100%;
 			display: block;
@@ -62,7 +62,7 @@
 		}
 
 		header {
-			border-bottom: 1px solid $md-divider-color;
+			border-bottom: 1px solid $divider-color;
 		}
 	}
 
@@ -73,7 +73,7 @@
 		margin: 10px 0 0;
 		border: 1px solid transparent;
 		&:hover, &:focus {
-			border-bottom-color: $md-divider-color;
+			border-bottom-color: $divider-color;
 		}
 	}
 
@@ -82,18 +82,23 @@
 		-webkit-user-select: none;
 		user-select: none;
 		padding: 10px;
-		border: 1px solid $md-divider-color;
+		border: 1px solid $divider-color;
 		margin: 10px;
 		cursor: pointer;
 
 		&.active {
-			background: $md-accent-color;
-			border-color: $md-accent-color;
+			color: #fff;
+			background: $accent-color;
+			border-color: $accent-color;
 		}
 	}
 }
 
 #skills {
+	width: 5 * (240px + 2 * 5px);
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 	li {
 		vertical-align: top;
 		width: 240px;
@@ -101,8 +106,7 @@
 		margin: 5px;
 		padding: 20px;
 		background: #FFF;
-		border: 1px solid $md-divider-color;
-		text-align: center;
+		border: 1px solid $divider-color;
 		transition: border-color 166ms 333ms, background-color 166ms 333ms, box-shadow 333ms ease-in;
 
 		&.filtered {
@@ -117,9 +121,12 @@
 				display: block;
 			}
 		}
-
+		.icon-container {
+			height: 60px;
+			width: 198px;
+		}
 		.icon {
-			margin: 0 auto;
+			margin: auto;
 		}
 
 		h3 {

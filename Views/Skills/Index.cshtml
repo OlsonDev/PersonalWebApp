@@ -29,7 +29,9 @@
 <ol id="skills">
 	@foreach (var skill in Model.Skills) {
 		<li class="skill-@skill.Code @skill.Tags.JoinWithPrefix("tag-")">
-			<div class="icon icon-@skill.Code"></div>
+			<div class="icon-container">
+				<div class="icon icon-@skill.Code"></div>
+			</div>
 			<h3 title="@skill.Name">@skill.Name</h3>
 			<div class="rating rating-@skill.Rating" title="Skill level: @skill.Rating/5"></div>
 		</li>

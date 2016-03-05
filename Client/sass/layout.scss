@@ -10,12 +10,11 @@ html {
 html, body {
 	height: 100%;
 	background: $bg-color;
-	color: $md-primary-text-color;
+	color: $text-color;
 }
 
 body {
 	overflow-y: scroll;
-	background: url(/images/old_mathematics.png);
 }
 
 li {
@@ -27,7 +26,7 @@ li {
 
 	li {
 		a {
-			color: $md-primary-color-text;
+			color: $header-footer-text-color;
 			text-decoration: none;
 			display: block;
 			padding: 10px 0;
@@ -43,34 +42,37 @@ li {
 
 		a {
 			&:hover, &:focus {
-				background: $md-primary-color;
+				background: rgba($accent-color, 0.2);
 			}
 		}
 	}
 }
 
 body > header {
-	background: $md-primary-color-dark;
+	background: $bg-header-footer;
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
 	height: $header-height;
 	z-index: 1;
+	box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.5);
 }
 
 body > footer {
 	text-align: center;
-	padding: 10px 0;
-	color: $md-primary-color-text;
-	background: $footer-color;
+	padding: 20px 0;
+	box-shadow: 0 -5px 15px 5px rgba(0, 0, 0, 0.6);
+	color: $header-footer-text-color;
+	background: $bg-header-footer;
 	height: $footer-height;
 }
 
 #content {
-	padding: ($header-height + 10px) 10px 10px;
+	padding: ($header-height + 25px) 10px 10px;
 	min-height: 100%;
 	margin: 0 auto (-$footer-height);
+	background: $bg-content;
 
 	&::after {
 		content: '';
@@ -97,6 +99,9 @@ body > footer {
 
 		&:hover, &:focus {
 			svg {
+				path {
+				}
+
 				&.icon-linkedin-box {
 					path {
 						fill: $linkedin-blue;
@@ -106,17 +111,25 @@ body > footer {
 				&.icon-github-box {
 					path {
 						fill: $github-purple;
+						stroke: lighten($github-purple, 15%);
+						stroke-width: 0.5px;
 					}
 				}
 
 				&.icon-bitbucket {
 					path {
 						fill: $bitbucket-blue;
+						stroke: lighten($bitbucket-blue, 15%);
+						stroke-width: 0.5px;
 					}
 				}
 
 				&.icon-stackexchange {
 					g {
+						> * {
+							stroke: #aaa;
+							stroke-width: 0.1px;
+						}
 						:nth-child(1) {
 							fill: #84d2e9;
 						}

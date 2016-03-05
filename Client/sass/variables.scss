@@ -1,11 +1,8 @@
-$md-primary-color-dark: #303F9F;
-$md-primary-color: #3F51B5;
-$md-primary-color-light: #C5CAE9;
-$md-primary-color-text: #FFFFFF;
-$md-accent-color: #FF9800;
-$md-primary-text-color: #212121;
-$md-secondary-text-color: #727272;
-$md-divider-color: #B6B6B6;
+$header-footer-text-color: #FFFFFF;
+$accent-color: #1976D2;
+$text-color: #212121;
+$text-color-secondary: #727272;
+$divider-color: #B6B6B6;
 
 $code-black: #222222;
 $code-white: #FFFFFF;
@@ -31,14 +28,15 @@ $stackoverflow-orange: #F48024;
 
 $bg-color: #EEEEEE;
 
-$web-profile-default-color: $md-primary-color-text;
+$web-profile-default-color: $header-footer-text-color;
 
 $header-height: 36px;
 $footer-height: 150px;
 
-$footer-color: darken($md-primary-color-dark, 30%);
-
-$focuses-bg-color: $md-accent-color;
+$focuses-bg-color: $accent-color;
 $focuses-color: #FFFFFF;
 
 $keywords-color: $code-lightgrey;
+
+$bg-header-footer: url(/images/dark_wall.png);
+$bg-content: url(/images/textured_paper.png);

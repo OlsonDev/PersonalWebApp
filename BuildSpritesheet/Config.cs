@@ -5,7 +5,7 @@ using System.IO;
 
 namespace BuildSpritesheet {
 	public static class Config {
-		public static readonly Rectangle DesiredSize = new Rectangle(0, 0, 148, 60);
+		public static readonly Rectangle DesiredSize = new Rectangle(0, 0, 198, 60);
 		public const string InkscapePath = @"C:\Storage\Inkscape\inkscape.exe";
 		public const string TexturePackerPath = @"C:\Program Files\CodeAndWeb\TexturePacker\bin\texturepacker.exe";
 
