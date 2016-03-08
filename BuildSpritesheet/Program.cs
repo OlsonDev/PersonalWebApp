@@ -15,7 +15,7 @@ namespace BuildSpritesheet {
 			SpritesheetBuilder.BuildSpritesheet();
 
 			Console.WriteLine();
-			Console.WriteLine("Done building spritesheet");
+			Console.WriteLine("Done building spritesheet. Press any key to exit.");
 
 			Console.ReadKey();
 		}
