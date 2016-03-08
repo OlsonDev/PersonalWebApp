@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNet.Builder;
 using System.Linq;
+using Microsoft.Data.Entity;
 using Microsoft.Extensions.DependencyInjection;
 using PersonalWebApp.Extensions;
 using PersonalWebApp.Models.Entity;
@@ -13,6 +14,12 @@ namespace PersonalWebApp.Models.Db {
 		// implemented as an extension method on IApplicationBuilder that we can call from Startup.cs
 		public static void EnsureSampleData(this IApplicationBuilder app) {
 			_context = app.ApplicationServices.GetService<ApplicationDbContext>();
+
+			_context.Database.ExecuteSqlCommand(@"
+				delete from skill.SkillToTag;
+				delete from skill.Tag;
+				delete from skill.Skill;
+			");
 
 			if (_context.Skills.Any()) return;
 
@@ -72,7 +79,7 @@ namespace PersonalWebApp.Models.Db {
 			BuildSkillWithIconClass(3, "Python 3", "python", "language");
 			BuildSkill(5, "Regex", "language");
 			BuildSkill(4, "Windows Forms", "framework", "desktop");
-			BuildSkillWithIconClass(4, "WPF", "xaml", "framework", "desktop");
+			BuildSkill(4, "WPF", "framework", "desktop");
 			BuildSkill(4, "XAML", "language", "web", "desktop");
 			BuildSkill(1, "DirectX", "library", "desktop");
 			BuildSkill(3, "WebGL", "library", "web");
