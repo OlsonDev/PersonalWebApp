@@ -53,7 +53,7 @@ namespace PersonalWebApp.Models.Db {
 			BuildSkillWithIconClass(4, "AngularJS 1.x", "angularjs", "framework", "web");
 			BuildSkillWithIconClass(4, "Angular 2.x", "angularjs", "framework", "web", "server");
 			BuildSkill(3, "Polymer", "framework", "web");
-			BuildSkill(4, "NodeJS", "framework", "web", "server");
+			BuildSkill(4, "NodeJS", "framework", "web", "server", "hardware");
 			BuildSkill(4, "npm", "tool");
 			BuildSkill(4, "gulp", "tool");
 			BuildSkill(4, "grunt", "tool");
