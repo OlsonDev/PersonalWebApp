@@ -14,9 +14,13 @@ namespace PersonalWebApp.Models.Entity {
 		[Required, MaxLength(100), RegularExpression("[a-z][a-z0-9-]*", ErrorMessage = "Code must be a lowercase slug.")]
 		public string Code { get; set; }
 
+		[Required, MaxLength(100), RegularExpression("[a-z][a-z0-9-]*", ErrorMessage = "IconClass must be a lowercase slug.")]
+		public string IconClass { get; set; }
+
 		[Required, Range(1, 5)]
 		public int Rating { get; set; }
 
 		public ICollection<SkillToTag> Taggings { get; set; }
+		
 	}
 }

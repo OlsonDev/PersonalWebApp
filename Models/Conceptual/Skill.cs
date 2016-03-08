@@ -6,6 +6,7 @@ namespace PersonalWebApp.Models.Conceptual {
 		public Guid SkillId { get; set; }
 		public string Name { get; set; }
 		public string Code { get; set; }
+		public string IconClass { get; set; }
 		public int Rating { get; set; }
 		public List<string> Tags { get; set; }
 	}

@@ -20,7 +20,7 @@ namespace PersonalWebApp.Services {
 				join st in _dbContext.SkillTaggings on s.SkillId equals st.SkillId
 				join t in _dbContext.SkillTags on st.TagId equals t.TagId
 				where s.SkillId == skillId
-				select new { s.SkillId, s.Code, s.Name, s.Rating, Tag = t.Code }
+				select new { s.SkillId, s.Code, s.IconClass, s.Name, s.Rating, Tag = t.Code }
 			;
 
 			var iter = results.GetEnumerator();
@@ -32,6 +32,7 @@ namespace PersonalWebApp.Services {
 			var skill = new Conceptual.Skill {
 				SkillId = first.SkillId,
 				Code = first.Code,
+				IconClass = first.IconClass,
 				Name = first.Name,
 				Rating = first.Rating,
 				Tags = new List<string> { first.Tag }
@@ -50,7 +51,7 @@ namespace PersonalWebApp.Services {
 				join st in _dbContext.SkillTaggings on s.SkillId equals st.SkillId
 				join t in _dbContext.SkillTags on st.TagId equals t.TagId
 				orderby s.Name
-				select new { s.SkillId, s.Code, s.Name, s.Rating, Tag = t.Code }
+				select new { s.SkillId, s.Code, s.IconClass, s.Name, s.Rating, Tag = t.Code }
 			;
 
 			using (var iter = results.GetEnumerator()) {
@@ -60,6 +61,7 @@ namespace PersonalWebApp.Services {
 				var skill = new Conceptual.Skill {
 					SkillId = cur.SkillId,
 					Code = cur.Code,
+					IconClass = cur.IconClass,
 					Name = cur.Name,
 					Rating = cur.Rating,
 					Tags = new List<string> { cur.Tag }
@@ -72,6 +74,7 @@ namespace PersonalWebApp.Services {
 						skill = new Conceptual.Skill {
 							SkillId = cur.SkillId,
 							Code = cur.Code,
+							IconClass = cur.IconClass,
 							Name = cur.Name,
 							Rating = cur.Rating,
 							Tags = new List<string>()
