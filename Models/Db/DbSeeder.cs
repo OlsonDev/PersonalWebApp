@@ -31,6 +31,7 @@ namespace PersonalWebApp.Models.Db {
 			BuildSkill(3, "IIS", "server");
 			BuildSkillWithIconClass(4, "Entity Framework", "asp-net", "server", "framework", "database");
 			BuildSkill(3, "NHibernate", "server", "framework", "database");
+			BuildSkill(4, "NUnit", "framework");
 			BuildSkill(3, "Java", "language", "desktop", "server", "web");
 			BuildSkillWithIconClass(5, "Railo Server", "railo", "framework", "server");
 			BuildSkillWithIconClass(5, "Railo CFML", "railo", "language", "server");
@@ -73,6 +74,8 @@ namespace PersonalWebApp.Models.Db {
 			BuildSkill(3, "MongoDB", "database", "server");
 			BuildSkillWithCodeAndIconClass(2, "C++14", "c-plus-plus-14", "c-plus-plus", "language", "desktop", "server");
 			BuildSkillWithCode(2, "C++ CLR", "c-plus-plus-clr", "language", "framework", "desktop", "server");
+			BuildSkill(3, "CLion", "tool", "app");
+			BuildSkill(3, "DataGrip", "tool", "app");
 			BuildSkill(4, "Tessel", "hardware", "framework");
 			BuildSkill(3, "Teensy", "hardware", "framework");
 			BuildSkill(3, "Arduino", "hardware", "framework");
