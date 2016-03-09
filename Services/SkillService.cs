@@ -92,6 +92,6 @@ namespace PersonalWebApp.Services {
 				Code = st.Code,
 				Name = st.Name
 			}
-		);
+		).OrderBy(st => st.Name);
 	}
 }
