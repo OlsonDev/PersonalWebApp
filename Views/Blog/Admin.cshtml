@@ -1,0 +1,43 @@
+<meta name="google-signin-client_id" content="222843551935-4s675nmoaasqds0u9eqs7ociqd8q7utb.apps.googleusercontent.com"/>
+<h1>Blog admin</h1>
+
+<div id="signin"></div>
+
+<script type="text/javascript">
+	'use strict';
+	function onSignIn(googleUser) {
+		var id_token = googleUser.getAuthResponse().id_token;
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', '/blog/auth');
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = () => {
+			if (xhr.status === 200) {
+				var obj = JSON.parse(xhr.responseText);
+				console.log("Signed in as " + obj.name);
+				console.log("Picture URL: " + obj.picture);
+				console.log("Email: " + obj.email);
+			} else {
+				console.log(`Request failed; returned status ${xhr.status}.`);
+			}
+		};
+		xhr.send('id_token=' + id_token);
+	}
+
+	function onFailure(error) {
+		console.log(error);
+	}
+
+	function renderButton() {
+		gapi.signin2.render('signin', {
+			scope: 'profile email',
+			width: 240,
+			height: 50,
+			longtitle: true,
+			theme: 'dark',
+			onsuccess: onSignIn,
+			onfailure: onFailure
+		});
+	}
+</script>
+
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
