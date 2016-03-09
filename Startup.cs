@@ -15,11 +15,9 @@ namespace PersonalWebApp {
 			var builder = new ConfigurationBuilder()
 					.AddJsonFile("appsettings.json")
 					.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+					.AddUserSecrets()
+					.AddEnvironmentVariables()
 			;
-			if (env.IsDevelopment()) {
-				builder.AddUserSecrets();
-			}
-			builder.AddEnvironmentVariables();
 			Configuration = builder.Build();
 		}
 		public IConfigurationRoot Configuration { get; set; }
