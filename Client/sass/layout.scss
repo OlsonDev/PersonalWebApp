@@ -79,10 +79,26 @@ body > footer {
 		display: block;
 		height: $header-height + $footer-height;
 	}
+
+	> h1 {
+		text-align: center;
+		font-size: 40px;
+		padding: 20px;
+		background: #fff;
+		border: 1px solid $divider-color;
+		box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
+	}
+
+	> * {
+		width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
 
 .bullet-points {
 	list-style: disc inside;
+	margin: 10px 5px;
 
 	li {
 		display: list-item;
@@ -130,6 +146,7 @@ body > footer {
 							stroke: #aaa;
 							stroke-width: 0.1px;
 						}
+
 						:nth-child(1) {
 							fill: #84d2e9;
 						}
