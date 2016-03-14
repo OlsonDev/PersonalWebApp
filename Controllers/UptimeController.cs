@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using Microsoft.AspNet.Mvc;
 
 namespace PersonalWebApp.Controllers {
