@@ -111,6 +111,7 @@
 		background: #FFF;
 		border: 1px solid $divider-color;
 		transition: border-color 166ms 333ms, background-color 166ms 333ms, box-shadow 333ms ease-in;
+		line-height: 1;
 
 		&.filtered {
 			display: none;

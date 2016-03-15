@@ -97,9 +97,8 @@ body > footer {
 }
 
 .bullet-points {
-	list-style: disc inside;
-	margin: 20px 0;
-	line-height: 1.2em;
+	list-style: disc outside;
+	margin: 20px 0 20px 20px;
 
 	li {
 		display: list-item;
