@@ -2,7 +2,9 @@
 	"name": "personalwebapp",
 	"version": "0.0.1",
 	"description": "Josh Olson's personal website",
-	"dependencies": { },
+	"dependencies": {
+		"github-markdown-css": "^2.2.1"
+	},
 	"devDependencies": {
 		"concurrently": "^1.0.0",
 		"typescript": "^1.8",
@@ -22,7 +24,7 @@
 		"build": "npm run clear-wwwroot && npm run copy && npm run sass",
 		"start": "dnx web",
 		"clear-wwwroot": "rd /s /q wwwroot && md wwwroot",
-		"copy": "concurrently \"npm run copy-images\" \"npm run copy-svg\" \"npm run copy-webconfig",
+		"copy": "concurrently \"npm run copy-images\" \"npm run copy-work-history\" \"npm run copy-svg\" \"npm run copy-webconfig",
 		"copy-images": "xcopy \"client/images\" \"wwwroot/images\" /y /q /i /s",
 		"copy-work-history": "xcopy \"client/work-history\" \"wwwroot/work-history\" /y /q /i /s",
 		"copy-svg": "xcopy \"client/svg\" \"wwwroot/svg\" /y /q /i /s",

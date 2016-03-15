@@ -15,7 +15,22 @@ namespace PersonalWebApp.Controllers {
 		}
 		public IActionResult Index() {
 			ViewData["Title"] = "My blog";
-			return View();
+			var md = @"
+# Hello there
+
+This is a paragraph.
+
+- one
+- two
+- three
+- four
+
+1. pirate
+1. ninja
+1. zombie
+";
+			var model = CommonMark.CommonMarkConverter.Convert(md);
+			return View(model: model);
 		}
 
 		public IActionResult Admin() {
