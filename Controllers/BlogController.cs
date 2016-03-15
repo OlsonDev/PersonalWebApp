@@ -28,6 +28,15 @@ This is a paragraph.
 1. pirate
 1. ninja
 1. zombie
+
+```c#
+public class BlogController : Controller {
+    public IActionResultIndex() {
+        ViewData[""Title""] = ""My blog inception"";
+        return View();
+    }
+}
+```
 ";
 			var model = CommonMark.CommonMarkConverter.Convert(md);
 			return View(model: model);
