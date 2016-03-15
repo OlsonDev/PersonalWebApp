@@ -37,6 +37,7 @@
 		transition: all 166ms;
 		padding: 0 20px;
 		height: 0;
+
 		h3 {
 			font-style: italic;
 		}
@@ -72,6 +73,7 @@
 		padding: 10px;
 		margin: 10px 0 0;
 		border: 1px solid transparent;
+
 		&:hover, &:focus {
 			border-bottom-color: $divider-color;
 		}
@@ -99,6 +101,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+
 	li {
 		vertical-align: top;
 		width: 240px;
@@ -116,16 +119,18 @@
 		&:hover {
 			transition: box-shadow 333ms 83ms;
 			box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
-			
+
 			.rating {
 				display: block;
 			}
 		}
+
 		.icon-container {
 			height: 60px;
 			width: 198px;
 			display: flex;
 		}
+
 		.icon {
 			margin: auto;
 		}
