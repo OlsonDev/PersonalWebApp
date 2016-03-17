@@ -1,19 +1,131 @@
-@import '../../node_modules/github-markdown-css/github-markdown';
-
 .markdown-body {
 	min-width: 200px;
-	max-width: 980px; // TODO: Should entire body be widened?
+	max-width: 800px;
 	margin: 20px auto 0;
-	padding: 45px;
+	padding: 40px;
 	background: #fff;
 	border: 1px solid $divider-color;
 	box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
-	// Undo reset
-	ol, ul { list-style-position: inside; }
-	ol { list-style-type: decimal; }
-	ul { list-style-type: disc; }
-	// TODO: Does this flavor of Markdown even support nested lists?
-	/*ul ul, ol ul { list-style-type: circle; margin-left: 15px; }
-	ol ol, ul ol { list-style-type: lower-latin; margin-left: 15px; }*/
-	li { display: list-item; }
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	color: #333;
+	font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 16px;
+	line-height: 1.6;
+	word-wrap: break-word;
+
+	> *, blockquote > * {
+		margin-top: 1em;
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		line-height: 1.1;
+	}
+
+	h1, h2 {
+		border-bottom: 1px solid #eee;
+	}
+
+	h1 {
+		font-size: 30px;
+	}
+
+	h2 {
+		font-size: 21px;
+	}
+
+	h3 {
+		font-size: 16px;
+	}
+
+	h4 {
+		font-size: 14px;
+	}
+
+	h5 {
+		font-size: 12px;
+	}
+
+	h6 {
+		font-size: 11px;
+	}
+
+	a {
+		color: $accent-color;
+		text-decoration: none;
+
+		&:hover, &:active {
+			text-decoration: underline;
+		}
+	}
+
+	hr {
+		background: $divider-color;
+		border-top: 1px solid $divider-color;
+		border-bottom: 1px solid lighten($divider-color, 20%);
+	}
+
+	blockquote {
+		padding: 0.4em 1em;
+		color: #666;
+		border-left: 4px solid #d6d6d6;
+		background: #f9f9f9;
+
+		code {
+			box-shadow: inset 0 0 0 10em #e7e7e7;
+		}
+	}
+
+	code {
+		font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+		box-shadow: inset 0 0 0 10em #f7f7f7;
+		padding: 0 0.2em;
+	}
+
+	pre code {
+		font-size: 14px;
+		box-shadow: none;
+	}
+
+	ol, ul {
+		list-style-position: inside;
+		margin: 1em 0 0;
+		padding: unset;
+
+		ol {
+			list-style-type: lower-alpha;
+		}
+
+		ul {
+			list-style-type: circle;
+		}
+
+		ol, ul {
+			margin: 0 0 0 1em;
+
+			ol {
+				list-style-type: lower-roman;
+			}
+
+			ul {
+				list-style-type: square;
+			}
+		}
+	}
+
+	ol {
+		list-style-type: decimal;
+	}
+
+	ul {
+		list-style-type: disc;
+	}
+
+	li {
+		display: list-item;
+	}
 }

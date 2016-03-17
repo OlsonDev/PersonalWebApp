@@ -2,9 +2,7 @@
 	"name": "personalwebapp",
 	"version": "0.0.1",
 	"description": "Josh Olson's personal website",
-	"dependencies": {
-		"github-markdown-css": "^2.2.1"
-	},
+	"dependencies": { },
 	"devDependencies": {
 		"concurrently": "^1.0.0",
 		"typescript": "^1.8",
