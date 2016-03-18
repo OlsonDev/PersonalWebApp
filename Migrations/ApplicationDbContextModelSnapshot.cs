@@ -25,6 +25,10 @@ namespace PersonalWebApp.Migrations
                         .IsRequired()
                         .HasAnnotation("MaxLength", 100);
 
+                    b.Property<string>("IconClass")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 100);
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasAnnotation("MaxLength", 100);
