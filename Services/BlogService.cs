@@ -57,22 +57,23 @@ namespace PersonalWebApp.Services {
 				Slug = first.Slug,
 				MarkdownContent = first.EntryMarkdownContent,
 				HtmlContent = first.CommentMarkdownContent,
-
-				Comments = new List<Conceptual.BlogComment> {
-					new Conceptual.BlogComment() {
-						CommentId = first.CommentId,
-						EntryId = first.EntryId,
-						DateSubmitted = first.DateSubmitted,
-						DateReviewed = first.DateReviewed,
-						IsApproved = first.IsApproved,
-						AuthorName = first.AuthorName,
-						AuthorEmail = first.AuthorEmail,
-						AuthorWebsite = first.AuthorWebsite,
-						MarkdownContent = first.CommentMarkdownContent,
-						HtmlContent = first.CommentHtmlContent
-					}
-				}
+				Comments = new List<Conceptual.BlogComment>()
 			};
+
+			if (first.CommentId != Guid.Empty) {
+				entry.Comments.Add(new Conceptual.BlogComment() {
+					CommentId = first.CommentId,
+					EntryId = first.EntryId,
+					DateSubmitted = first.DateSubmitted,
+					DateReviewed = first.DateReviewed,
+					IsApproved = first.IsApproved,
+					AuthorName = first.AuthorName,
+					AuthorEmail = first.AuthorEmail,
+					AuthorWebsite = first.AuthorWebsite,
+					MarkdownContent = first.CommentMarkdownContent,
+					HtmlContent = first.CommentHtmlContent
+				});
+			}
 
 			while (iter.MoveNext()) {
 				var cur = iter.Current;
@@ -96,7 +97,8 @@ namespace PersonalWebApp.Services {
 		public IEnumerable<Conceptual.BlogEntry> GetAll() {
 			var results =
 				from be in _dbContext.BlogEntries
-				join bc in _dbContext.BlogComments on be.EntryId equals bc.EntryId
+				join bc in _dbContext.BlogComments on be.EntryId equals bc.EntryId into bcs
+				from bc in bcs.DefaultIfEmpty()
 				orderby be.DatePublished descending, bc.DateSubmitted descending
 				select new {
 					be.EntryId,
@@ -133,22 +135,23 @@ namespace PersonalWebApp.Services {
 					Slug = cur.Slug,
 					MarkdownContent = cur.EntryMarkdownContent,
 					HtmlContent = cur.CommentMarkdownContent,
-
-					Comments = new List<Conceptual.BlogComment> {
-						new Conceptual.BlogComment {
-							CommentId = cur.CommentId,
-							EntryId = cur.EntryId,
-							DateSubmitted = cur.DateSubmitted,
-							DateReviewed = cur.DateReviewed,
-							IsApproved = cur.IsApproved,
-							AuthorName = cur.AuthorName,
-							AuthorEmail = cur.AuthorEmail,
-							AuthorWebsite = cur.AuthorWebsite,
-							MarkdownContent = cur.CommentMarkdownContent,
-							HtmlContent = cur.CommentHtmlContent
-						}
-					}
+					Comments = new List<Conceptual.BlogComment>()
 				};
+
+				if (cur.CommentId != Guid.Empty) {
+					entry.Comments.Add(new Conceptual.BlogComment {
+						CommentId = cur.CommentId,
+						EntryId = cur.EntryId,
+						DateSubmitted = cur.DateSubmitted,
+						DateReviewed = cur.DateReviewed,
+						IsApproved = cur.IsApproved,
+						AuthorName = cur.AuthorName,
+						AuthorEmail = cur.AuthorEmail,
+						AuthorWebsite = cur.AuthorWebsite,
+						MarkdownContent = cur.CommentMarkdownContent,
+						HtmlContent = cur.CommentHtmlContent
+					});
+				}
 
 				while (iter.MoveNext()) {
 					cur = iter.Current;
@@ -163,23 +166,23 @@ namespace PersonalWebApp.Services {
 							Slug = cur.Slug,
 							MarkdownContent = cur.EntryMarkdownContent,
 							HtmlContent = cur.CommentMarkdownContent,
-
 							Comments = new List<Conceptual.BlogComment>()
 						};
 					}
-
-					entry.Comments.Add(new Conceptual.BlogComment {
-						CommentId = cur.CommentId,
-						EntryId = cur.EntryId,
-						DateSubmitted = cur.DateSubmitted,
-						DateReviewed = cur.DateReviewed,
-						IsApproved = cur.IsApproved,
-						AuthorName = cur.AuthorName,
-						AuthorEmail = cur.AuthorEmail,
-						AuthorWebsite = cur.AuthorWebsite,
-						MarkdownContent = cur.CommentMarkdownContent,
-						HtmlContent = cur.CommentHtmlContent
-					});
+					if (cur.CommentId != Guid.Empty) {
+						entry.Comments.Add(new Conceptual.BlogComment {
+							CommentId = cur.CommentId,
+							EntryId = cur.EntryId,
+							DateSubmitted = cur.DateSubmitted,
+							DateReviewed = cur.DateReviewed,
+							IsApproved = cur.IsApproved,
+							AuthorName = cur.AuthorName,
+							AuthorEmail = cur.AuthorEmail,
+							AuthorWebsite = cur.AuthorWebsite,
+							MarkdownContent = cur.CommentMarkdownContent,
+							HtmlContent = cur.CommentHtmlContent
+						});
+					}
 				}
 				yield return entry;
 			}
