@@ -9,6 +9,8 @@ namespace PersonalWebApp.Models.Db {
 		public DbSet<Skill> Skills { get; set; }
 		public DbSet<SkillTag> SkillTags { get; set; }
 		public DbSet<SkillToTag> SkillTaggings { get; set; }
+		public DbSet<BlogEntry> BlogEntries { get; set; }
+		public DbSet<BlogComment> BlogComments { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder) {
 			BuildModelSchemaNames(modelBuilder);

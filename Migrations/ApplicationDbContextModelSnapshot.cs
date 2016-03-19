@@ -16,6 +16,68 @@ namespace PersonalWebApp.Migrations
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("PersonalWebApp.Models.Entity.BlogComment", b =>
+                {
+                    b.Property<Guid>("CommentId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AuthorEmail")
+                        .IsRequired();
+
+                    b.Property<string>("AuthorName")
+                        .IsRequired();
+
+                    b.Property<string>("AuthorWebsite");
+
+                    b.Property<DateTimeOffset?>("DateReviewed");
+
+                    b.Property<DateTimeOffset>("DateSubmitted");
+
+                    b.Property<Guid>("EntryId");
+
+                    b.Property<string>("HtmlContent");
+
+                    b.Property<bool>("IsApproved");
+
+                    b.Property<string>("MarkdownContent");
+
+                    b.HasKey("CommentId");
+
+                    b.HasAnnotation("Relational:Schema", "blog");
+
+                    b.HasAnnotation("Relational:TableName", "Comment");
+                });
+
+            modelBuilder.Entity("PersonalWebApp.Models.Entity.BlogEntry", b =>
+                {
+                    b.Property<Guid>("EntryId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTimeOffset>("DateCreated");
+
+                    b.Property<DateTimeOffset>("DateLastModified");
+
+                    b.Property<DateTimeOffset?>("DatePublished");
+
+                    b.Property<string>("HtmlContent");
+
+                    b.Property<string>("MarkdownContent");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 160);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 160);
+
+                    b.HasKey("EntryId");
+
+                    b.HasAnnotation("Relational:Schema", "blog");
+
+                    b.HasAnnotation("Relational:TableName", "Entry");
+                });
+
             modelBuilder.Entity("PersonalWebApp.Models.Entity.Skill", b =>
                 {
                     b.Property<Guid>("SkillId")
@@ -79,6 +141,13 @@ namespace PersonalWebApp.Migrations
                     b.HasAnnotation("Relational:Schema", "skill");
 
                     b.HasAnnotation("Relational:TableName", "SkillToTag");
+                });
+
+            modelBuilder.Entity("PersonalWebApp.Models.Entity.BlogComment", b =>
+                {
+                    b.HasOne("PersonalWebApp.Models.Entity.BlogEntry")
+                        .WithMany()
+                        .HasForeignKey("EntryId");
                 });
 
             modelBuilder.Entity("PersonalWebApp.Models.Entity.SkillToTag", b =>
