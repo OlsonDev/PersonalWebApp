@@ -5,89 +5,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
+using PersonalWebApp.Services;
 
 namespace PersonalWebApp.Controllers {
 	public class BlogController : Controller {
 		private readonly IConfiguration _configuration;
+		private readonly BlogService _blogService;
 
-		public BlogController(IConfiguration configuration) {
+		public BlogController(IConfiguration configuration, BlogService blogService) {
 			_configuration = configuration;
+			_blogService = blogService;
 		}
 		public IActionResult Index() {
 			ViewData["Title"] = "My blog";
-			const string md = @"
-# H1 Header
-## H2 Header
-### H3 Header
-#### H4 Header
-##### H5 Header
-###### H6 Header
-
-This is a paragraph. Check out [this link](https://www.google.com/ 'Google').
-Here's [another one][1].\
-This is a _separate_ line within the **same** paragraph.
-
-This is a **new** paragraph. Tacos <del>aren't</del> <ins>are</ins> delicious.
-
-> This is a multiline
-> quote.
->
-> Check out this `inline code block` and this fenced code block:
->
-> ```js
-> function noop() { return; }
-> ```
-> > Check out this cool nested quote.
-> >
-> > Check out this `inline code block` and this fenced code block:
-> > ```js
-> > function noop() { return; }
-> > ```
-
-Check out this `inline code` here.
-
-- one
-- two
-- three
-    - three dot one
-    - three dot two
-        - three dot two dot one
-        - three dot two dot two
-- four
-* new list item 1
-* new list item 2
-
------------
-
-Cool thematic break (horizontal rule), no?
-
-1. pirate
-1. ninja
-1. zombie
-    1. three dot one
-    1. three dot two
-        1. three dot two dot one
-        1. three dot two dot two
-
-This list should start at 9:
-9. taco
-1. pizza
-1. beefcake
-1. what
-
-```csharp
-public class BlogController : Controller {
-    public IActionResultIndex() {
-        ViewData[""Title""] = ""My blog inception"";
-        return View();
-    }
-}
-```
-
-[1]: https://www.reddit.com/ 'Reddit'
-";
-			var model = CommonMark.CommonMarkConverter.Convert(md);
-			return View(model: model);
+			return View(_blogService.GetAll());
 		}
 
 		public IActionResult Admin() {

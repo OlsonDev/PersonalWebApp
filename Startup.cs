@@ -35,7 +35,10 @@ namespace PersonalWebApp {
 			services.AddSingleton<IConfiguration>(sp => Configuration);
 
 			// These should be request scoped so DbContext leases a new connection and doesn't close it on other requests
-			services.AddScoped<SkillService>();
+			services
+				.AddScoped<SkillService>()
+				.AddScoped<BlogService>()
+			;
 		}
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
