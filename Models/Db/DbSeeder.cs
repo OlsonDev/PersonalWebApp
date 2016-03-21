@@ -108,6 +108,8 @@ namespace PersonalWebApp.Models.Db {
 			BuildSkill(5, "Sublime Text", "tool", "app");
 			BuildSkill(5, "SQL Server Management Studio", "tool", "app");
 			BuildSkill(2, "MySQL Workbench", "tool", "app");
+			BuildSkill(4, "Fiddler", "tool", "app");
+			BuildSkill(2, "Wireshark", "tool", "app");
 			BuildSkill(2, "Android Studio", "tool", "app");
 			BuildSkill(3, "Xcode", "tool", "app");
 			BuildSkill(3, "Inkscape", "tool", "app");
