@@ -45,7 +45,7 @@
 				margin: 1em 0 0 1em;
 
 				&:hover, &:focus {
-					//background: lighten($accent-color, 10%);
+					background: lighten($accent-color, 10%);
 					box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 				}
 
