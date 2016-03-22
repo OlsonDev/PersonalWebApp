@@ -6,6 +6,7 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using PersonalWebApp.Models;
+using PersonalWebApp.Models.Conceptual;
 using PersonalWebApp.Services;
 
 namespace PersonalWebApp.Controllers {
@@ -25,6 +26,22 @@ namespace PersonalWebApp.Controllers {
 		public IActionResult Admin() {
 			ViewData["Title"] = "My blog admin";
 			return View();
+		}
+
+		public IActionResult Preview(string title, string slug, string markdownContent) {
+			return ApiResponse(() => {
+				var now = DateTimeOffset.Now;
+				var model = new BlogEntry {
+					MarkdownContent = markdownContent,
+					HtmlContent = CommonMark.CommonMarkConverter.Convert(markdownContent),
+					Title = title,
+					Slug = slug,
+					DateCreated = now,
+					DateLastModified = now,
+					DatePublished = now
+				};
+				return RenderPartialViewToString("_BlogEntry", model);
+			});
 		}
 
 		// ReSharper disable once InconsistentNaming

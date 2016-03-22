@@ -1,6 +1,7 @@
 {
 	"ambientDependencies": {
 		"gapi.auth2": "registry:dt/gapi.auth2#0.0.0+20160319051641",
-		"grecaptcha": "github:DefinitelyTyped/DefinitelyTyped/grecaptcha/grecaptcha.d.ts#bfb1ef58546e5687c4560bc115b6c3a6eb7445c2"
+		"grecaptcha": "registry:dt/grecaptcha#0.0.0+20160317120654",
+		"highlightjs": "registry:dt/highlightjs#9.1.0+20160317120654"
 	}
 }

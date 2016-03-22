@@ -1,0 +1,21 @@
+﻿@using System.Diagnostics
+@using System.Threading.Tasks
+@model PersonalWebApp.Models.Conceptual.BlogEntry
+@{
+	var title = string.IsNullOrEmpty(Model.Title) ? "Blog entry" : Model.Title;
+
+	Debug.Assert(Model.DatePublished != null, "blogEntry.DatePublished != null");
+	var datePublished = ((DateTimeOffset)Model.DatePublished);
+	var iso8601 = datePublished.ToString("o");
+	var humanReadableShort = datePublished.ToString("MMMM d, yyyy");
+	var humanReadableFull = datePublished.ToString("dddd, MMMM d, yyyy hh:mm:ss tt (zzz)");
+
+	var htmlContent = string.IsNullOrEmpty(Model.HtmlContent) ? "<h2>Blog entry content</h2>" : Model.HtmlContent;
+}
+<article class="markdown-body">
+	<header>
+		<h1>@title</h1>
+		<p>Written by Josh Olson <time datetime="@iso8601" title="@humanReadableFull">@humanReadableShort</time></p>
+	</header>
+	@Html.Raw(htmlContent)
+</article>
