@@ -53,5 +53,9 @@ namespace PersonalWebApp.Extensions {
 			var str = String.Join(separator + prefix, values);
 			return str.Length > 0 ? prefix + str : string.Empty;
 		}
+
+		public static string NaiveHtmlMinify(this string str) {
+			return Regex.Replace(str, @">\s+<", "><");
+		}
 	}
 }
