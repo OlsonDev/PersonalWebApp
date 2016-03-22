@@ -7,7 +7,7 @@
 			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			xhr.onload = () => {
 				if (xhr.status === 200) {
-					const obj = JSON.parse(xhr.responseText);
+					const obj = JSON.parse(xhr.responseText).result;
 					document.getElementById('email').textContent = obj.email;
 					document.getElementById('phone').textContent = obj.phone;
 				} else {
