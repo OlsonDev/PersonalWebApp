@@ -13,8 +13,8 @@
 		"removeComments": false
 	},
 	"exclude": [
-		"client/ts/typings/browser.d.ts",
-		"client/ts/typings/browser",
+		"client/ts/typings/main.d.ts",
+		"client/ts/typings/main",
 		"node_modules"
 	]
 }
