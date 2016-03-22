@@ -1,7 +1,30 @@
 <meta name="google-signin-client_id" content="222843551935-4s675nmoaasqds0u9eqs7ociqd8q7utb.apps.googleusercontent.com"/>
 <h1>Blog admin</h1>
 
-<div id="signin"></div>
+<form method="post" action="">
+	<div class="field">
+		<label for="title">Title</label>
+		<input type="text" value="" name="title" id="title" placeholder="Title" />
+	</div>
+
+	<div class="field">
+		<label for="slug">Slug</label>
+		<input type="text" value="" name="slug" id="slug" placeholder="Slug" />
+	</div>
+
+	<div class="field">
+		<label for="markdown-content">Content</label>
+		<textarea name="markdown-content" id="markdown-content" placeholder="## Hello world"></textarea>
+	</div>
+	
+	<div class="buttons">
+		<div id="signin"></div>
+		<button hidden type="submit" id="save-button">Save</button>
+		<button hidden type="button" id="update-preview-button">Update preview</button>
+	</div>
+</form>
+
+
 
 <script src="/scripts/blog-admin.js"></script>
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>

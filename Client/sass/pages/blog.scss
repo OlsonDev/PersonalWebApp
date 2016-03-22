@@ -1,0 +1,62 @@
+.controller-blog.action-admin {
+	form {
+		margin: 20px 0;
+		padding: 20px;
+		background: #fff;
+		border: 1px solid $divider-color;
+		box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
+
+		> div.field {
+			min-height: 40px;
+			margin-top: 1em;
+
+			&:first-child {
+				margin-top: 0;
+			}
+
+			> label, > input {
+				display: inline-block;
+				vertical-align: top;
+				height: 40px;
+				line-height: 40px;
+				width: 160px;
+			}
+
+			> input, > textarea {
+				width: 598px;
+			}
+
+			> textarea {
+				height: 40em;
+			}
+		}
+
+		> div.buttons {
+			#signin {
+				margin: 1em 0 0 160px;
+			}
+
+			> button {
+				border: none;
+				background: $accent-color;
+				color: #fff;
+				height: 50px;
+				padding: 0 2em;
+				margin: 1em 0 0 1em;
+
+				&:hover, &:focus {
+					//background: lighten($accent-color, 10%);
+					box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+				}
+
+				&:active {
+					background: darken($accent-color, 10%);
+				}
+
+				&:first-of-type {
+					margin-left: 160px;
+				}
+			}
+		}
+	}
+}
