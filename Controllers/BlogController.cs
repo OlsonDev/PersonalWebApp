@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 using PersonalWebApp.Services;
 
 namespace PersonalWebApp.Controllers {
-	public class BlogController : Controller {
+	public class BlogController : BaseController {
 		private readonly IConfiguration _configuration;
 		private readonly BlogService _blogService;
 

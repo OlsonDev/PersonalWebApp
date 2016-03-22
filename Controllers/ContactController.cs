@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 
 namespace PersonalWebApp.Controllers {
-	public class ContactController : Controller {
+	public class ContactController : BaseController {
 		private readonly IConfiguration _configuration;
 
 		public ContactController(IConfiguration configuration) {

@@ -3,7 +3,7 @@ using PersonalWebApp.Models.ViewModels;
 using PersonalWebApp.Services;
 
 namespace PersonalWebApp.Controllers {
-	public class SkillsController : Controller {
+	public class SkillsController : BaseController {
 		private readonly SkillService _skillService;
 
 		public SkillsController(SkillService skillService) {
