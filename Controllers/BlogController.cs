@@ -44,6 +44,25 @@ namespace PersonalWebApp.Controllers {
 			});
 		}
 
+		public IActionResult Save(string title, string slug, string markdownContent) {
+			return ApiResponse(() => {
+				var now = DateTimeOffset.Now;
+				var model = new BlogEntry {
+					MarkdownContent = markdownContent,
+					HtmlContent = CommonMark.CommonMarkConverter.Convert(markdownContent),
+					Title = title,
+					Slug = slug,
+					DateCreated = now,
+					DateLastModified = now,
+					DatePublished = now
+				};
+
+				_blogService.SaveBlogEntry(model);
+				
+				return new { RedirectUrl = model.Url };
+			});
+		}
+
 		// ReSharper disable once InconsistentNaming
 		public async Task<IActionResult> Auth(string id_token) {
 			return await ApiResponse(async () => {

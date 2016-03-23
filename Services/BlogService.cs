@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Data.Entity;
 using PersonalWebApp.Models.Db;
 using Conceptual = PersonalWebApp.Models.Conceptual;
+using Entity = PersonalWebApp.Models.Entity;
 
 namespace PersonalWebApp.Services {
 	public class BlogService : BaseService {
@@ -69,6 +70,26 @@ namespace PersonalWebApp.Services {
 					HtmlContent = bce.HtmlContent
 				}).ToList()
 			});
+		}
+
+		public Conceptual.BlogEntry SaveBlogEntry(Conceptual.BlogEntry model) {
+			model.EntryId = model.EntryId == Guid.Empty
+				? _dbContext.NewGuidComb()
+				: model.EntryId
+			;
+			var entity = new Entity.BlogEntry {
+				EntryId = model.EntryId,
+				DatePublished = model.DatePublished,
+				DateCreated = model.DateCreated,
+				DateLastModified = model.DateLastModified,
+				Title = model.Title,
+				Slug = model.Slug,
+				MarkdownContent = model.MarkdownContent,
+				HtmlContent = model.HtmlContent,
+			};
+			_dbContext.BlogEntries.Add(entity);
+			_dbContext.SaveChanges();
+			return model;
 		}
 	}
 }

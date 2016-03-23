@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 using Microsoft.Data.Entity;
 using PersonalWebApp.Models.Attributes;
@@ -30,6 +31,24 @@ namespace PersonalWebApp.Models.Db {
 			;
 
 			base.OnModelCreating(modelBuilder);
+		}
+
+		private static readonly long BaseDateTicks = new DateTime(1900, 1, 1).Ticks;
+
+		public Guid NewGuidComb() {
+			var guidBytes = Guid.NewGuid().ToByteArray();
+			var now = DateTime.UtcNow;
+			var days = TimeSpan.FromTicks(now.Ticks - BaseDateTicks).Days;
+			var dayBytes = BitConverter.GetBytes(days);
+			// SQL Server is accurate to 1/300th of a millisecond
+			var msecBytes = BitConverter.GetBytes((long)(1000 * now.TimeOfDay.TotalMilliseconds / 300));
+			// Match SQL Server's byte order
+			Array.Reverse(dayBytes);
+			Array.Reverse(msecBytes);
+			// (Comb)ine GUID with timestamp
+			Array.Copy(dayBytes, dayBytes.Length - 2, guidBytes, guidBytes.Length - 6, 2);
+			Array.Copy(msecBytes, msecBytes.Length - 4, guidBytes, guidBytes.Length - 4, 4);
+			return new Guid(guidBytes);
 		}
 
 		private static void BuildModelSchemaNames(ModelBuilder modelBuilder) {

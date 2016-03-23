@@ -12,5 +12,7 @@ namespace PersonalWebApp.Models.Conceptual {
 		public string MarkdownContent { get; set; }
 		public string HtmlContent { get; set; }
 		public List<BlogComment> Comments { get; set; }
-	}
+
+		public string Url => $"/blog/{DatePublished?.Year}/{DatePublished?.Month}/{DatePublished?.Day}/{Slug}";
+  }
 }

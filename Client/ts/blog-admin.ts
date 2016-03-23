@@ -68,3 +68,18 @@ updatePreviewBtn.addEventListener('click', () => {
 	};
 	xhr.send(data);
 });
+
+saveBtn.addEventListener('click', () => {
+	const data = new FormData(form);
+	const xhr = new XMLHttpRequest();
+	xhr.open('POST', '/blog/save');
+	xhr.onload = () => {
+		if (xhr.status === 200) {
+			const obj = JSON.parse(xhr.responseText).result;
+			window.location = obj.redirectUrl;
+		} else {
+			console.log(`/blog/save request failed; returned status ${xhr.status}.`);
+		}
+	};
+	xhr.send(data);
+});
