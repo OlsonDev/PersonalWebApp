@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using PersonalWebApp.Models;
 using PersonalWebApp.Models.Conceptual;
 using PersonalWebApp.Services;
+using System.Linq;
 
 namespace PersonalWebApp.Controllers {
 	public class BlogController : BaseController {
@@ -61,6 +62,22 @@ namespace PersonalWebApp.Controllers {
 				
 				return new { RedirectUrl = model.Url };
 			});
+		}
+
+		[HttpGet("/blog/{year}/{month}/{day}/{slug?}")]
+		public IActionResult Single(int year, int month, int day, string slug) {
+			var date = new DateTime(year, month, day);
+			var model = _blogService.GetAll(date, slug).ToList();
+			if (model.FirstOrDefault()?.Slug == slug) {
+				ViewData["Title"] = $"{model.First().Title} | My blog";
+				model = model.Take(1).ToList();
+			} else if (model.Count == 1) {
+				ViewData["Title"] = $"1 entry for {date.ToString("MMMM d, yyyy")} | My blog";
+			} else {
+				ViewData["Title"] = $"{model.Count} entries for {date.ToString("MMMM d, yyyy")} | My blog";
+			}
+			
+			return View("Index", model);
 		}
 
 		// ReSharper disable once InconsistentNaming

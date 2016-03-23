@@ -14,7 +14,7 @@
 }
 <article class="markdown-body">
 	<header>
-		<h1>@title</h1>
+		<h1><a href="@Model.Url">@title</a></h1>
 		<p>Written by Josh Olson <time datetime="@iso8601" title="@humanReadableFull">@humanReadableShort</time></p>
 	</header>
 	@Html.Raw(htmlContent)
