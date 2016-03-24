@@ -32,9 +32,7 @@ namespace PersonalWebApp.Controllers {
 
 		public IActionResult Preview(string title, string slug, string markdownContent) {
 			return ApiResponse(() => {
-				if (HttpContext.Session.GetInt32("isAuthed") != 1) {
-					return new InvalidApiResponse("Not authenticated and/or authorized.");
-				}
+				if (!IsAuthed()) return NotAuthedApiResponse();
 				var now = DateTimeOffset.Now;
 				var model = new BlogEntry {
 					MarkdownContent = markdownContent,
@@ -51,9 +49,7 @@ namespace PersonalWebApp.Controllers {
 
 		public IActionResult Save(string title, string slug, string markdownContent) {
 			return ApiResponse(() => {
-				if (HttpContext.Session.GetInt32("isAuthed") != 1) {
-					return new InvalidApiResponse("Not authenticated and/or authorized.");
-				}
+				if (!IsAuthed()) return NotAuthedApiResponse();
 				var now = DateTimeOffset.Now;
 				var model = new BlogEntry {
 					MarkdownContent = markdownContent,
@@ -85,6 +81,14 @@ namespace PersonalWebApp.Controllers {
 			}
 
 			return View("Index", model);
+		}
+
+		private static InvalidApiResponse NotAuthedApiResponse() {
+			return new InvalidApiResponse("Not authenticated and/or authorized.");
+		}
+
+		private bool IsAuthed() {
+			return HttpContext.Session.GetInt32("isAuthed") == 1;
 		}
 
 		// ReSharper disable once InconsistentNaming
