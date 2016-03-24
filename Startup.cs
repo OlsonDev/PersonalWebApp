@@ -66,7 +66,7 @@ namespace PersonalWebApp {
 			app.UseStaticFiles();
 			app.UseStripWhitespace();
 			app.UseMvc(routes => {
-				routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+				routes.MapRoute("default", "{controller=Blog}/{action=Index}/{id?}");
 			});
 		}
 

@@ -8,7 +8,7 @@ namespace PersonalWebApp.Conventions {
 		public string DefaultController { get; set; }
 		public string DefaultAction { get; set; }
 
-		public HyphenatedRoutingConvention(string defaultController = "home", string defaultAction = "index") {
+		public HyphenatedRoutingConvention(string defaultController = "blog", string defaultAction = "index") {
 			DefaultController = defaultController.ToLower();
 			DefaultAction = defaultAction.ToLower();
 		}
