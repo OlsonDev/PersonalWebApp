@@ -1,0 +1,79 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	background: transparent;
+}
+em {
+	font-style: italic;
+}
+strong {
+	font-weight: bold;
+}
+body {
+	line-height: 1.25;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote::before, blockquote::after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+html, body {
+	cursor: default;
+}
+code {
+	cursor: text;
+}
+a
+, label
+, button
+, input[type="radio"]
+, input[type="button"]
+, input[type="submit"]
+, input[type="checkbox"] {
+	cursor: pointer;
+}
+button[disabled], input[disabled] {
+	cursor: default;
+}
+abbr[title], dfn[title] {
+	border-bottom: 1px dotted currentColor;
+	cursor: help;
+}
+.hidden {
+	display: none !important;
+}
+input, button, textarea, :focus {
+	outline: none;
+}
+hr {
+	border: 0;
+	height: 1px;
+	background: linear-gradient(to right, #000, #455A64 15%, #455A64 85%, #000);
+	margin: 1em 0;
+}
