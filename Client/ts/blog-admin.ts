@@ -22,10 +22,14 @@ function onSignIn(googleUser: gapi.auth2.GoogleUser) {
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.onload = () => {
 		if (xhr.status === 200) {
-			const obj = JSON.parse(xhr.responseText).result;
-			console.log(`Signed in as ${obj.name}`);
-			console.log(`Picture URL: ${obj.picture}`);
-			console.log(`Email: ${obj.email}`);
+			const response = JSON.parse(xhr.responseText);
+			if (!response.valid) {
+				alert(response.message);
+				return;
+			}
+			const result = response.result;
+			console.log(`Signed in as ${result.name} (${result.email})`);
+			console.log(`Picture URL: ${result.picture}`);
 			signin.hidden = true;
 			toggleButtons(true);
 		} else {
@@ -57,7 +61,12 @@ updatePreviewBtn.addEventListener('click', () => {
 	xhr.open('POST', '/blog/preview');
 	xhr.onload = () => {
 		if (xhr.status === 200) {
-			const html = JSON.parse(xhr.responseText).result;
+			const response = JSON.parse(xhr.responseText);
+			if (!response.valid) {
+				alert(response.message);
+				return;
+			}
+			const html = response.result;
 			const article = document.querySelector('form + article');
 			article && article.remove();
 			form.insertAdjacentHTML('afterend', html);
@@ -70,15 +79,25 @@ updatePreviewBtn.addEventListener('click', () => {
 });
 
 saveBtn.addEventListener('click', () => {
+	saveBtn.disabled = true;
+	saveBtn.innerHTML = 'Saving&hellip;';
 	const data = new FormData(form);
 	const xhr = new XMLHttpRequest();
 	xhr.open('POST', '/blog/save');
 	xhr.onload = () => {
 		if (xhr.status === 200) {
-			const obj = JSON.parse(xhr.responseText).result;
-			window.location = obj.redirectUrl;
+			const response = JSON.parse(xhr.responseText);
+			if (!response.valid) {
+				alert(response.message);
+				saveBtn.disabled = false;
+				saveBtn.innerHTML = 'Save';
+				return;
+			}
+			window.location = response.result.redirectUrl;
 		} else {
 			console.log(`/blog/save request failed; returned status ${xhr.status}.`);
+			saveBtn.disabled = false;
+			saveBtn.innerHTML = 'Save';
 		}
 	};
 	xhr.send(data);

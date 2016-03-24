@@ -1,15 +1,12 @@
 .markdown-body {
-	min-width: 200px;
-	max-width: 800px;
+	@extend %lifted-white-box;
 	margin: 20px auto 0;
 	padding: 40px;
-	background: #fff;
-	border: 1px solid $divider-color;
-	box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
+	min-width: 200px;
+	max-width: 800px;
 	-webkit-text-size-adjust: 100%;
 	text-size-adjust: 100%;
 	color: #333;
-	font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-size: 16px;
 	line-height: 1.6;
 	word-wrap: break-word;

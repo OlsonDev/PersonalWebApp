@@ -26,7 +26,8 @@
 		"Newtonsoft.Json": "8.0.3",
 		"System.Net.Http": "4.0.0",
 		"Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-rc1-final",
-		"CommonMark.NET": "0.11.0"
+		"CommonMark.NET": "0.11.0",
+		"Microsoft.AspNet.Session": "1.0.0-rc1-final"
 	},
 	"commands": {
 		"web": "Microsoft.AspNet.Server.Kestrel",

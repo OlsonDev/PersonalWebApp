@@ -1,10 +1,6 @@
 .controller-blog.action-admin {
 	form {
-		margin: 20px 0;
-		padding: 20px;
-		background: #fff;
-		border: 1px solid $divider-color;
-		box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
+		@extend %lifted-white-box;
 
 		> div.field {
 			min-height: 40px;
@@ -32,9 +28,7 @@
 		}
 
 		> div.buttons {
-			#signin {
-				margin: 1em 0 0 160px;
-			}
+			margin: 1em 160px;
 
 			> button {
 				border: none;
@@ -42,7 +36,12 @@
 				color: #fff;
 				height: 50px;
 				padding: 0 2em;
-				margin: 1em 0 0 1em;
+				margin-left: 1em;
+				@extend %no-select;
+
+				&:first-of-type {
+					margin-left: 0;
+				}
 
 				&:hover, &:focus {
 					background: lighten($accent-color, 10%);
@@ -53,8 +52,9 @@
 					background: darken($accent-color, 10%);
 				}
 
-				&:first-of-type {
-					margin-left: 160px;
+				&:disabled {
+					background: $disabled-color;
+					box-shadow: none;
 				}
 			}
 		}

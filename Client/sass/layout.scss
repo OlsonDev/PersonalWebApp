@@ -1,6 +1,6 @@
 html {
 	box-sizing: border-box;
-	font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+	font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 *, *::before, *::after {
@@ -81,12 +81,10 @@ body > footer {
 	}
 
 	> h1 {
+		@extend %lifted-white-box;
 		text-align: center;
 		font-size: 40px;
-		padding: 20px;
-		background: #fff;
-		border: 1px solid $divider-color;
-		box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
+		margin: 0 auto;
 	}
 
 	> * {

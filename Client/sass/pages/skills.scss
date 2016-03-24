@@ -1,10 +1,9 @@
 #skills-filter {
+	@extend %lifted-white-box;
 	width: 800px;
 	margin: 0 auto 10px;
-	background-color: #fff;
-	border-color: $divider-color;
-	box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
-
+	padding: 0;
+	
 	header {
 		padding: 20px;
 
@@ -103,13 +102,11 @@
 	text-align: center;
 
 	li {
+		@extend %white-box;
 		vertical-align: top;
 		width: 240px;
 		height: 148px;
 		margin: 5px;
-		padding: 20px;
-		background: #FFF;
-		border: 1px solid $divider-color;
 		transition: border-color 166ms 333ms, background-color 166ms 333ms, box-shadow 333ms ease-in;
 		line-height: 1;
 

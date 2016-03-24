@@ -18,6 +18,15 @@ namespace PersonalWebApp.Models {
 		public InvalidApiResponse(object result) {
 			Result = result;
 		}
+
+		public InvalidApiResponse(string message) {
+			Message = message;
+		}
+
+		public InvalidApiResponse(object result, string message) {
+			Result = result;
+			Message = message;
+		}
 	}
 
 	public class ValidApiResponse : ApiResponse {

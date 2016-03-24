@@ -9,6 +9,7 @@ using PersonalWebApp.Models;
 using PersonalWebApp.Models.Conceptual;
 using PersonalWebApp.Services;
 using System.Linq;
+using Microsoft.AspNet.Http;
 
 namespace PersonalWebApp.Controllers {
 	public class BlogController : BaseController {
@@ -31,6 +32,9 @@ namespace PersonalWebApp.Controllers {
 
 		public IActionResult Preview(string title, string slug, string markdownContent) {
 			return ApiResponse(() => {
+				if (HttpContext.Session.GetInt32("isAuthed") != 1) {
+					return new InvalidApiResponse("Not authenticated and/or authorized.");
+				}
 				var now = DateTimeOffset.Now;
 				var model = new BlogEntry {
 					MarkdownContent = markdownContent,
@@ -47,6 +51,9 @@ namespace PersonalWebApp.Controllers {
 
 		public IActionResult Save(string title, string slug, string markdownContent) {
 			return ApiResponse(() => {
+				if (HttpContext.Session.GetInt32("isAuthed") != 1) {
+					return new InvalidApiResponse("Not authenticated and/or authorized.");
+				}
 				var now = DateTimeOffset.Now;
 				var model = new BlogEntry {
 					MarkdownContent = markdownContent,
@@ -59,7 +66,7 @@ namespace PersonalWebApp.Controllers {
 				};
 
 				_blogService.SaveBlogEntry(model);
-				
+
 				return new { RedirectUrl = model.Url };
 			});
 		}
@@ -76,7 +83,7 @@ namespace PersonalWebApp.Controllers {
 			} else {
 				ViewData["Title"] = $"{model.Count} entries for {date.ToString("MMMM d, yyyy")} | My blog";
 			}
-			
+
 			return View("Index", model);
 		}
 
@@ -95,12 +102,14 @@ namespace PersonalWebApp.Controllers {
 					var googleClientId = _configuration["Data:GoogleClientId"];
 					var responseEmail = apiResponseObject.email.ToString().ToLower();
 					var validEmail = _configuration["Data:Email"].ToLower();
+					var isValid = apiResponseObject.aud == googleClientId && responseEmail == validEmail;
+					if (!isValid) return new InvalidApiResponse();
 
-					return apiResponseObject.aud == googleClientId && responseEmail == validEmail
-						? (ApiResponse)
-							new ValidApiResponse(new { apiResponseObject.email, apiResponseObject.picture, apiResponseObject.name })
-						: new InvalidApiResponse()
-						;
+					// Sure would like a Set<bool>() method...
+					// See https://github.com/aspnet/Session/issues/3
+					HttpContext.Session.SetInt32("isAuthed", 1);
+
+					return new ValidApiResponse(new { apiResponseObject.email, apiResponseObject.picture, apiResponseObject.name });
 				}
 			});
 		}

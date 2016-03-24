@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Data.Entity;
@@ -27,7 +28,12 @@ namespace PersonalWebApp {
 				.AddSqlServer()
 				.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]))
 			;
-			
+
+			services.AddCaching();
+			services.AddSession(options => {
+				options.IdleTimeout = TimeSpan.FromDays(14);
+			});
+
 			services.AddMvc(options => {
 				options.Conventions.Add(new HyphenatedRoutingConvention());
 			});
@@ -45,7 +51,6 @@ namespace PersonalWebApp {
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 			loggerFactory.AddDebug();
 
-			
 			if (env.IsDevelopment()) {
 				app.UseDeveloperExceptionPage();
 				app.EnsureSampleData(); // TODO: Only in production
@@ -65,6 +70,7 @@ namespace PersonalWebApp {
 			app.UseIISPlatformHandler();
 			app.UseStaticFiles();
 			app.UseStripWhitespace();
+			app.UseSession();
 			app.UseMvc(routes => {
 				routes.MapRoute("default", "{controller=Blog}/{action=Index}/{id?}");
 			});
