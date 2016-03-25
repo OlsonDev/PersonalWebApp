@@ -8,8 +8,12 @@
 			xhr.onload = () => {
 				if (xhr.status === 200) {
 					const obj = JSON.parse(xhr.responseText).result;
-					document.getElementById('email').textContent = obj.email;
+					const email = document.getElementById('email') as HTMLAnchorElement;
+					email.href = `mailto:${obj.email}?subject=Hello from your website&body=Hey there,%0D%0A%0D%0A`;
+					email.textContent = obj.email;
 					document.getElementById('phone').textContent = obj.phone;
+					document.getElementById('contact-info').classList.remove('hidden');
+					document.getElementById('grecaptcha').classList.add('hidden');
 				} else {
 					console.log(`Request failed; returned status ${xhr.status}.`);
 				}
