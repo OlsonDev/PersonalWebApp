@@ -61,3 +61,19 @@
 		}
 	}
 }
+.ptr-1, .ptr-2, .ptr-3 {
+	padding: 4px;
+	color: #FFF;
+	border-radius: 2px;
+	white-space: nowrap;
+}
+.ptr-1 {
+	background: #F00;
+}
+.ptr-2 {
+	background: #FC0;
+	color: #000;
+}
+.ptr-3 {
+	background: #00B3FF;
+}
