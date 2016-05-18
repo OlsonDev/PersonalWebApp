@@ -39,7 +39,7 @@ namespace PersonalWebApp {
 			});
 
 			services.AddMvc(options => {
-				//options.Conventions.Add(new HyphenatedRoutingConvention());
+				options.Conventions.Add(new HyphenatedRoutingConvention());
 			});
 
 			services.AddSingleton<IConfiguration>(sp => Configuration);

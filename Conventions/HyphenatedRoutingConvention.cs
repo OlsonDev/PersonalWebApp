@@ -20,7 +20,7 @@ namespace PersonalWebApp.Conventions {
 				if (hasAttributeRouteModels) continue;
 
 				var controllerTmpl = controller.ControllerName.PascalToSlug();
-				controller.Selectors.Add(new SelectorModel { AttributeRouteModel = new AttributeRouteModel { Template = controllerTmpl } });
+				controller.Selectors[0].AttributeRouteModel = new AttributeRouteModel { Template = controllerTmpl };
 
 				var actionsToAdd = new List<ActionModel>();
 				foreach (var action in controller.Actions) {
@@ -29,20 +29,12 @@ namespace PersonalWebApp.Conventions {
 					var actionSlug = action.ActionName.PascalToSlug();
 					var actionTmpl = $"{actionSlug}/{{id?}}";
 					if (actionSlug == DefaultAction) {
-						var defaultActionModel = new ActionModel(action);
-						defaultActionModel.Selectors.Add(new SelectorModel { AttributeRouteModel = new AttributeRouteModel { Template = "" } });
-						actionsToAdd.Add(defaultActionModel);
+						action.Selectors.Add(new SelectorModel { AttributeRouteModel = new AttributeRouteModel { Template = "" } });
 						if (controllerTmpl == DefaultController) {
-							var defaultControllerModel = new ActionModel(action);
-							defaultControllerModel.Selectors.Add(new SelectorModel { AttributeRouteModel = new AttributeRouteModel { Template = "/" } });
-							actionsToAdd.Add(defaultControllerModel);
+							action.Selectors.Add(new SelectorModel { AttributeRouteModel = new AttributeRouteModel { Template = "/" } });
 						}
 					}
-					action.Selectors.Add(new SelectorModel { AttributeRouteModel = new AttributeRouteModel { Template = actionTmpl } });
-				}
-				// Flaky; contigent on resolution of https://github.com/aspnet/Mvc/issues/4043
-				foreach (var action in actionsToAdd) {
-					controller.Actions.Add(action);
+					action.Selectors[0].AttributeRouteModel = new AttributeRouteModel { Template = actionTmpl };
 				}
 			}
 		}
