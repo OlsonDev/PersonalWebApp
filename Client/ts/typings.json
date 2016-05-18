@@ -1,5 +1,5 @@
 {
-	"ambientDependencies": {
+	"globalDependencies": {
 		"gapi.auth2": "registry:dt/gapi.auth2#0.0.0+20160319051641",
 		"grecaptcha": "registry:dt/grecaptcha#0.0.0+20160317120654",
 		"highlightjs": "registry:dt/highlightjs#9.1.0+20160317120654"

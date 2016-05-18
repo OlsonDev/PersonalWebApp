@@ -93,7 +93,7 @@ saveBtn.addEventListener('click', () => {
 				saveBtn.innerHTML = 'Save';
 				return;
 			}
-			window.location = response.result.redirectUrl;
+			window.location.href = response.result.redirectUrl;
 		} else {
 			console.log(`/blog/save request failed; returned status ${xhr.status}.`);
 			saveBtn.disabled = false;

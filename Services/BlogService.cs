@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Data.Entity;
 using PersonalWebApp.Models.Db;
 using Conceptual = PersonalWebApp.Models.Conceptual;
 using Entity = PersonalWebApp.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace PersonalWebApp.Services {
 	public class BlogService : BaseService {

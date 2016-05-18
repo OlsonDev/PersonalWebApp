@@ -1,28 +1,29 @@
 ﻿using System.IO;
 using System.Xml.Linq;
-using Microsoft.AspNet.Razor.TagHelpers;
-using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.DotNet.InternalAbstractions;
+using Microsoft.AspNetCore.Hosting;
 
 namespace PersonalWebApp.TagHelpers {
 	[HtmlTargetElement("icon", TagStructure = TagStructure.WithoutEndTag, Attributes = "name")]
 	public class IconTagHelper : TagHelper {
-		private readonly IApplicationEnvironment _appEnvironment;
+		private IHostingEnvironment env;
 
 		public string Name { get; set; } = "alert";
 		public string Size { get; set; } = "24";
 
-		public IconTagHelper(IApplicationEnvironment appEnvironment) {
-			_appEnvironment = appEnvironment;
+		public IconTagHelper(IHostingEnvironment env) {
+			this.env = env;
 		}
 
 		public override void Process(TagHelperContext context, TagHelperOutput output) {
 			output.TagName = "svg";
 			output.TagMode = TagMode.StartTagAndEndTag;
-			output.Attributes["width"] = Size;
-			output.Attributes["height"] = Size;
-			output.Attributes["viewBox"] = output.Attributes["viewBox"]?.Value?.ToString() ?? "0 0 24 24";
+			output.Attributes.SetAttribute("width", Size);
+			output.Attributes.SetAttribute("height", Size);
+			output.Attributes.SetAttribute("viewBox", output.Attributes["viewBox"]?.Value?.ToString() ?? "0 0 24 24");
 			var classPostfix = (" " + output.Attributes["class"]?.Value).TrimEnd();
-			output.Attributes["class"] = "icon-" + Name.Replace(";", " icon-") + classPostfix;
+			output.Attributes.SetAttribute("class", "icon-" + Name.Replace(";", " icon-") + classPostfix);
 
 			var names = Name.Split(';');
 			foreach (var name in names) {
@@ -48,8 +49,8 @@ namespace PersonalWebApp.TagHelpers {
 		}
 
 		private XDocument GetSvgDocument(string name) {
-			var basePath = _appEnvironment.ApplicationBasePath;
-			return XDocument.Load(Path.Combine(basePath, $"Client/svg/{name}.svg"));
+			var basePath = env.WebRootPath;
+			return XDocument.Load(Path.Combine(basePath, $"svg/{name}.svg"));
 		}
 	}
 }

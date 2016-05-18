@@ -2,10 +2,10 @@
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Rendering;
-using Microsoft.AspNet.Mvc.ViewEngines;
-using Microsoft.AspNet.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Newtonsoft.Json;
 using PersonalWebApp.Extensions;
 using PersonalWebApp.Models;
@@ -13,6 +13,11 @@ using PersonalWebApp.Utility;
 
 namespace PersonalWebApp.Controllers {
 	public abstract class BaseController : Controller {
+		[ActionContext]
+		public ActionContext ActionContext { get; set; }
+
+		public IServiceProvider Resolver => ActionContext?.HttpContext?.RequestServices;
+
 		protected string RenderPartialViewToString(string viewName, object model, bool minify = true) {
 			if (string.IsNullOrEmpty(viewName)) {
 				viewName = ActionContext.ActionDescriptor.Name;
@@ -21,7 +26,7 @@ namespace PersonalWebApp.Controllers {
 			using (var sw = new StringWriter()) {
 				var engine = Resolver.GetService(typeof(ICompositeViewEngine)) as ICompositeViewEngine;
 				Debug.Assert(engine != null, "engine != null");
-				var viewResult = engine.FindPartialView(ActionContext, viewName);
+				var viewResult = engine.FindView(ActionContext, viewName, false);
 				var viewContext = new ViewContext(ActionContext, viewResult.View, ViewData, TempData, sw, new HtmlHelperOptions());
 				var t = viewResult.View.RenderAsync(viewContext);
 				t.Wait();

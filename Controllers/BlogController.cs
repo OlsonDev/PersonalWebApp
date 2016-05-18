@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using PersonalWebApp.Models;
 using PersonalWebApp.Models.Conceptual;
 using PersonalWebApp.Services;
 using System.Linq;
-using Microsoft.AspNet.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace PersonalWebApp.Controllers {
 	public class BlogController : BaseController {

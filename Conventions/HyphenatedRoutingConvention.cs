@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNet.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using PersonalWebApp.Extensions;
+using System.Linq;
 
 namespace PersonalWebApp.Conventions {
 	// See https://github.com/aspnet/Routing/issues/186
@@ -15,24 +16,29 @@ namespace PersonalWebApp.Conventions {
 
 		public void Apply(ApplicationModel application) {
 			foreach (var controller in application.Controllers) {
-				if (controller.AttributeRoutes.Count != 0) continue;
+				var hasAttributeRouteModels = controller.Selectors.Any(selector => selector.AttributeRouteModel != null);
+				if (hasAttributeRouteModels) continue;
 
 				var controllerTmpl = controller.ControllerName.PascalToSlug();
-				controller.AttributeRoutes.Add(new AttributeRouteModel { Template = controllerTmpl });
+				controller.Selectors.Add(new SelectorModel { AttributeRouteModel = new AttributeRouteModel { Template = controllerTmpl } });
 
 				var actionsToAdd = new List<ActionModel>();
 				foreach (var action in controller.Actions) {
-					if (action.AttributeRouteModel != null) continue;
+					var hasAttributeRouteModel = action.Selectors.Any(selector => selector.AttributeRouteModel != null);
+					if (hasAttributeRouteModel) continue;
 					var actionSlug = action.ActionName.PascalToSlug();
 					var actionTmpl = $"{actionSlug}/{{id?}}";
 					if (actionSlug == DefaultAction) {
-						var defaultActionModel = new ActionModel(action) { AttributeRouteModel = new AttributeRouteModel { Template = "" } };
+						var defaultActionModel = new ActionModel(action);
+						defaultActionModel.Selectors.Add(new SelectorModel { AttributeRouteModel = new AttributeRouteModel { Template = "" } });
 						actionsToAdd.Add(defaultActionModel);
 						if (controllerTmpl == DefaultController) {
-							actionsToAdd.Add(new ActionModel(action) { AttributeRouteModel = new AttributeRouteModel { Template = "/" } });
+							var defaultControllerModel = new ActionModel(action);
+							defaultControllerModel.Selectors.Add(new SelectorModel { AttributeRouteModel = new AttributeRouteModel { Template = "/" } });
+							actionsToAdd.Add(defaultControllerModel);
 						}
 					}
-					action.AttributeRouteModel = new AttributeRouteModel { Template = actionTmpl };
+					action.Selectors.Add(new SelectorModel { AttributeRouteModel = new AttributeRouteModel { Template = actionTmpl } });
 				}
 				// Flaky; contigent on resolution of https://github.com/aspnet/Mvc/issues/4043
 				foreach (var action in actionsToAdd) {

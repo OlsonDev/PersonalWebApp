@@ -22,7 +22,7 @@
 		"build": "npm run clear-wwwroot && npm run copy && npm run sass",
 		"start": "dnx web",
 		"clear-wwwroot": "rd /s /q wwwroot && md wwwroot",
-		"copy": "concurrently \"npm run copy-images\" \"npm run copy-work-history\" \"npm run copy-highlight\" \"npm run copy-svg\" \"npm run copy-webconfig\n",
+		"copy": "concurrently \"npm run copy-images\" \"npm run copy-work-history\" \"npm run copy-highlight\" \"npm run copy-svg\" \"npm run copy-webconfig\"",
 		"copy-images": "xcopy \"client/images\" \"wwwroot/images\" /y /q /i /s",
 		"copy-work-history": "xcopy \"client/work-history\" \"wwwroot/work-history\" /y /q /i /s",
 		"copy-highlight": "xcopy \"client/lib/highlight\" \"wwwroot/highlight\" /y /q /i /s",

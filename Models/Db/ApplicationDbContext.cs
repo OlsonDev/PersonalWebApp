@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Data.Entity;
 using PersonalWebApp.Models.Attributes;
 using PersonalWebApp.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace PersonalWebApp.Models.Db {
 	public class ApplicationDbContext : DbContext {
@@ -12,6 +12,8 @@ namespace PersonalWebApp.Models.Db {
 		public DbSet<SkillToTag> SkillTaggings { get; set; }
 		public DbSet<BlogEntry> BlogEntries { get; set; }
 		public DbSet<BlogComment> BlogComments { get; set; }
+
+		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder) {
 			BuildModelSchemaNames(modelBuilder);

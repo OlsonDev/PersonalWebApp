@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNet.Builder;
+using Microsoft.AspNetCore.Builder;
 using System.Linq;
-using Microsoft.Data.Entity;
 using Microsoft.Extensions.DependencyInjection;
 using PersonalWebApp.Extensions;
 using PersonalWebApp.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace PersonalWebApp.Models.Db {
 	public static class DbSeeder {

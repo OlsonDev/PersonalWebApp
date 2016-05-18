@@ -1,7 +1,6 @@
 using System;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.Data.Entity;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -9,11 +8,16 @@ using PersonalWebApp.Conventions;
 using PersonalWebApp.Middleware;
 using PersonalWebApp.Models.Db;
 using PersonalWebApp.Services;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
+using System.Diagnostics;
 
 namespace PersonalWebApp {
 	public class Startup {
 		public Startup(IHostingEnvironment env) {
 			var builder = new ConfigurationBuilder()
+					.SetBasePath(env.ContentRootPath)
 					.AddJsonFile("appsettings.json")
 					.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
 					.AddUserSecrets()
@@ -21,21 +25,21 @@ namespace PersonalWebApp {
 			;
 			Configuration = builder.Build();
 		}
+
 		public IConfigurationRoot Configuration { get; set; }
 
 		public void ConfigureServices(IServiceCollection services) {
 			services.AddEntityFramework()
-				.AddSqlServer()
+				.AddEntityFrameworkSqlServer()
 				.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]))
 			;
-
-			services.AddCaching();
+			services.AddMemoryCache();
 			services.AddSession(options => {
 				options.IdleTimeout = TimeSpan.FromDays(14);
 			});
 
 			services.AddMvc(options => {
-				options.Conventions.Add(new HyphenatedRoutingConvention());
+				//options.Conventions.Add(new HyphenatedRoutingConvention());
 			});
 
 			services.AddSingleton<IConfiguration>(sp => Configuration);
@@ -67,7 +71,6 @@ namespace PersonalWebApp {
 				}
 			}
 
-			app.UseIISPlatformHandler();
 			app.UseStaticFiles();
 			app.UseStripWhitespace();
 			app.UseSession();
@@ -76,6 +79,15 @@ namespace PersonalWebApp {
 			});
 		}
 
-		public static void Main(string[] args) => WebApplication.Run<Startup>(args);
+		public static void Main(string[] args) {
+			var host = new WebHostBuilder()
+					.UseKestrel()
+					.UseContentRoot(Directory.GetCurrentDirectory())
+					.UseIISIntegration()
+					.UseStartup<Startup>()
+					.Build();
+
+			host.Run();
+		}
 	}
 }
