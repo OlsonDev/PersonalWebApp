@@ -1,0 +1,7 @@
+{
+	"editor.tabSize": 2
+	, "editor.insertSpaces": false
+	, "files.trimTrailingWhitespace": true
+	, "editor.glyphMargin": true
+	, "editor.roundedSelection": false
+}
