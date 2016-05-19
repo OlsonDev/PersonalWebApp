@@ -11,7 +11,6 @@ using PersonalWebApp.Services;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
-using System.Diagnostics;
 
 namespace PersonalWebApp {
 	public class Startup {
@@ -81,12 +80,12 @@ namespace PersonalWebApp {
 
 		public static void Main(string[] args) {
 			var host = new WebHostBuilder()
-					.UseKestrel()
-					.UseContentRoot(Directory.GetCurrentDirectory())
-					.UseIISIntegration()
-					.UseStartup<Startup>()
-					.Build();
-
+				.UseKestrel()
+				.UseContentRoot(Directory.GetCurrentDirectory())
+				.UseIISIntegration()
+				.UseStartup<Startup>()
+				.Build()
+			;
 			host.Run();
 		}
 	}
