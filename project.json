@@ -63,7 +63,8 @@
 	},
 
 	"runtimeOptions": {
-		"gcServer": true
+		"gcServer": true,
+		"gcConcurrent": true
 	},
 
 	"publishOptions": {
