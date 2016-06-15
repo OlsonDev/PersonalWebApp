@@ -1,126 +1,41 @@
 /// <reference path="../partials/_all.scss"/>
-body.controller-resume {
-	h2 {
-		font-size: 24px;
-		text-align: center;
-		margin: 0 0 15px;
-	}
-
-	section {
-		@extend %lifted-white-box;
+.snap-fitness, .analytics-inc {
+	.mdl-card__title {
+		min-height: 150px;
+		height: 20vw;
+		max-height: 334px;
+		color: #fff;
+		text-shadow: 1px 1px 1px #000;
+		margin-bottom: 16px;
 	}
 }
 
-#my-focuses {
-	div {
-		border-radius: 50%;
-		background: $focuses-bg-color;
-		width: 90px;
-		height: 90px;
-		padding: 15px;
-		display: inline-block;
-		text-align: center;
-		margin: 0 0 10px;
-		box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
+.snap-fitness {
+	.mdl-card__title {
+		background: url(/work-history/card-snap-fitness.jpg) center / cover;
 	}
+}
 
-	svg {
-		path {
-			fill: $focuses-color;
-		}
+.analytics-inc {
+	.mdl-card__title {
+		background: url(/work-history/card-analytics-inc.jpg) center / cover;
 	}
+}
 
+.mdl-card__media {
+	background-color: transparent;
+	img {
+		margin-left: 16px;
+	}
+}
+
+.education {
 	ul {
-		padding: 0 1px;
-	}
-
-	li {
-		text-align: center;
-		width: 126px;
-		font-weight: bold;
-		text-transform: uppercase;
-	}
-}
-
-#mission-statement {
-	div {
-		font-size: 18px;
-	}
-
-	p {
-		+ p {
-			margin-top: 20px;
-		}
-	}
-}
-
-#work-history {
-	padding: 20px 0;
-
-	> div {
-		padding: 20px;
-		position: relative;
-		font-size: 18px;
-		border-top: 1px solid $divider-color;
-
-		&:first-of-type {
-			border-top: none;
-		}
-
-		h3 {
-			font-size: 24px;
-			font-weight: bold;
-			text-shadow: 0 0 2px #ccc;
-		}
-
-		img {
-			display: block;
-			margin: 0 auto 20px;
-		}
-
-		h4 {
-			font-size: 20px;
-			font-style: italic;
-		}
-
-		.date-range {
-			position: absolute;
-			top: 20px;
-			right: 20px;
-			font-size: 14px;
-			color: $text-color-secondary;
-		}
-	}
-}
-
-#education {
-	> div {
-		padding: 20px;
-		margin-bottom: 10px;
-		position: relative;
-		font-size: 18px;
-	}
-}
-
-#education-sources {
-	li {
-		display: block;
-	}
-}
-
-#education-self-taught-sources {
-	padding: 0 0 0 20px;
-}
-
-#references {
-	padding: 20px 0;
-
-	> div {
-		padding: 20px;
-		border-top: 1px solid $divider-color;
-
-		&:first-of-type {
-			border-top: none;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		ul {
+			margin-left: 1em;
 		}
 	}
 }

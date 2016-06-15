@@ -1,179 +1,158 @@
 /// <reference path="../partials/_all.scss"/>
-html {
-	box-sizing: border-box;
-	font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-*, *::before, *::after {
-	box-sizing: inherit;
-}
-
 html, body {
-	height: 100%;
-	background: $bg-color;
-	color: $text-color;
+	font-family: 'Roboto', 'Helvetica', sans-serif;
+	padding: 0;
+	margin: 0;
 }
 
 body {
-	overflow-y: scroll;
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
 }
 
-li {
-	display: inline-block;
+main {
+	flex: 1 0 auto;
 }
 
-#main-nav, #web-profiles {
+.bullet-points {
+	margin: 0;
+	padding: 0;
+	list-style-position: inside;
+
+	.bullet-points {
+		margin-left: 1em;
+	}
+}
+
+ul.browser-default li {
+	list-style-type: initial;
+}
+
+.card-content-divided {
+	@extend .card-content;
+	border-top: 1px solid rgba(160, 160, 160, 0.2);
+}
+
+nav .nav-wrapper {
+	padding: 0 16px;
+}
+footer {
 	text-align: center;
-
+}
+#web-profiles {
 	li {
-		a {
-			color: $header-footer-text-color;
-			text-decoration: none;
-			display: block;
-			padding: 10px 0;
-			width: 100%;
+		display: inline-block;
+	}
+
+	a {
+		path, rect {
+			fill: $web-profile-default-color;
+		}
+
+		&:hover, &:focus {
+			path, rect {
+				fill: #FFF;
+			}
+		}
+	}
+}
+
+.work-summary {
+	text-align: right;
+
+	.keywords {
+		text-align: right;
+	}
+
+	img {
+		margin: 1em 0;
+	}
+}
+
+@media #{$small-and-down} {
+	.work-summary {
+		text-align: center;
+
+		.keywords {
 			text-align: center;
 		}
 	}
 }
 
-#main-nav {
-	li {
-		width: 150px;
-
-		a {
-			&:hover, &:focus {
-				background: rgba($accent-color, 0.2);
-			}
-		}
-	}
+.indent {
+	text-indent: 2.5em;
 }
 
-body > header {
-	background: $bg-header-footer;
+.btn-large {
+	@extend %no-select;
+}
+
+nav .nav-wrapper form,
+nav .nav-wrapper form .input-field {
+	height: 100%;
+}
+
+.nav-search {
 	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: $header-height;
-	z-index: 1;
-	box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.5);
-}
+	top: 56px;
+	background: $search-color;
 
-body > footer {
-	text-align: center;
-	padding: 20px 0;
-	box-shadow: 0 -5px 15px 5px rgba(0, 0, 0, 0.6);
-	color: $header-footer-text-color;
-	background: $bg-header-footer;
-	height: $footer-height;
-}
-
-#content {
-	padding: ($header-height + 25px) 10px 10px;
-	min-height: 100%;
-	margin: 0 auto (-$footer-height);
-	background: $bg-content;
-
-	&::after {
-		content: '';
-		display: block;
-		height: $header-height + $footer-height;
+	.nav-wrapper {
+		padding: 0;
 	}
 
-	> h1 {
-		@extend %lifted-white-box;
+	.chip {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		left: 4rem;
+		min-width: 120px;
 		text-align: center;
-		font-size: 40px;
-		margin: 0 auto;
 	}
 
-	> * {
-		width: 800px;
-		margin-left: auto;
-		margin-right: auto;
+	.chip + input[type=search] {
+		padding-left: calc(4rem + 120px + 20px);
 	}
 }
 
-.bullet-points {
-	list-style: disc outside;
-	margin: 20px 0 20px 20px;
+.offset-nav-search {
+	margin-top: 56px + 20px;
+}
 
-	li {
-		display: list-item;
+@media #{$medium-and-up} {
+	.nav-search {
+		top: 64px;
+	}
+
+	.offset-nav-search {
+		margin-top: 64px + 20px;
 	}
 }
 
-#web-profiles {
-	a {
-		svg {
-			path, rect {
-				fill: $web-profile-default-color;
-			}
-		}
+.side-nav {
+	z-index: 1;
+}
 
-		&:hover, &:focus {
-			svg {
-				path {
-				}
+.chip {
+	cursor: default;
 
-				&.icon-linkedin-box {
-					path {
-						fill: $linkedin-blue;
-					}
-				}
+	&.active {
+		background: $chip-active-color;
+		color: #FFFFFF;
+	}
 
-				&.icon-github-box {
-					path {
-						fill: $github-purple;
-						stroke: lighten($github-purple, 15%);
-						stroke-width: 0.5px;
-					}
-				}
+	&:not(.active):hover {
+		background: $chip-hover-color;
+	}
+}
 
-				&.icon-bitbucket {
-					path {
-						fill: $bitbucket-blue;
-						stroke: lighten($bitbucket-blue, 15%);
-						stroke-width: 0.5px;
-					}
-				}
-
-				&.icon-stackexchange {
-					g {
-						> * {
-							stroke: #aaa;
-							stroke-width: 0.1px;
-						}
-
-						:nth-child(1) {
-							fill: #84d2e9;
-						}
-
-						:nth-child(2) {
-							fill: url(#stackexchange-gradient-a);
-						}
-
-						:nth-child(3) {
-							fill: url(#stackexchange-gradient-b);
-						}
-
-						:nth-child(4) {
-							fill: url(#stackexchange-gradient-c);
-						}
-					}
-				}
-
-				&.icon-stackoverflow-separated {
-					path:first-child {
-						fill: $stackoverflow-grey;
-					}
-
-					path:last-child {
-						fill: $stackoverflow-orange;
-					}
-				}
-			}
-		}
+.modal-content {
+	.chip {
+		@extend %no-select;
+		margin: 0.5em;
+		min-width: 120px;
+		text-align: center;
+		cursor: pointer;
 	}
 }

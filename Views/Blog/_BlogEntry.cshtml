@@ -12,10 +12,14 @@
 
 	var htmlContent = string.IsNullOrEmpty(Model.HtmlContent) ? "<h2>Blog entry content</h2>" : Model.HtmlContent;
 }
-<article class="markdown-body">
-	<header>
-		<h1><a href="@Model.Url">@title</a></h1>
-		<p>Written by Josh Olson <time datetime="@iso8601" title="@humanReadableFull">@humanReadableShort</time></p>
-	</header>
-	@Html.Raw(htmlContent)
+<article class="col s8 offset-s2 markdown-body">
+	<div class="card">
+		<header class="card-content">
+			<h1 class="card-title"><a href="@Model.Url">@title</a></h1>
+			<p>Written by Josh Olson <time datetime="@iso8601" title="@humanReadableFull">@humanReadableShort</time></p>
+		</header>
+		<div class="card-content-divided">
+			@Html.Raw(htmlContent)
+		</div>
+	</div>
 </article>

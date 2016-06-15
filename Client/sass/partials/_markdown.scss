@@ -1,10 +1,6 @@
 /// <reference path="../partials/_all.scss"/>
 .markdown-body {
-	@extend %lifted-white-box;
 	margin: 20px auto 0;
-	padding: 40px;
-	min-width: 200px;
-	max-width: 800px;
 	-webkit-text-size-adjust: 100%;
 	text-size-adjust: 100%;
 	color: #333;
@@ -12,21 +8,20 @@
 	line-height: 1.6;
 	word-wrap: break-word;
 
-	> *, blockquote > * {
-		margin-top: 1em;
+	.card .card-content, .card .card-content-divided {
+		> *, blockquote > * {
+			margin-top: 1em;
 
-		&:first-child {
-			margin-top: 0;
+			&:first-child {
+				margin-top: 0;
+			}
 		}
 	}
 
 	header {
-		border-bottom: 1px solid $divider-color;
-		margin: 0 -40px 40px;
-		padding: 0 40px 40px;
-
 		h1, h2 {
 			border-bottom: none;
+			margin: 0;
 		}
 	}
 

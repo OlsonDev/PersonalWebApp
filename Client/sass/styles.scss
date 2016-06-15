@@ -1,2 +1,7 @@
-@import 'partials/all';
-@import 'pages/all';
+@import 'partials/_variables.scss';
+@import '../../node_modules/materialize-css/sass/materialize.scss';
+@import 'partials/_util';
+@import 'partials/_layout';
+@import 'partials/_keywords';
+@import 'partials/_markdown.scss';
+@import 'pages/_skills';

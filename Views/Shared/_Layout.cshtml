@@ -1,32 +1,66 @@
-﻿<!doctype html>
+﻿@{ 
+	string controller = ((string)ViewContext.RouteData.Values["controller"]).ToLower();
+	string action = ((string)ViewContext.RouteData.Values["action"]).ToLower();
+	string ca = $"{controller}.{action}";
+}
+<!doctype html>
 <html>
 	<head>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<title>@ViewData["Title"] | Josh Olson</title>
-		<link type="text/css" rel="stylesheet" href="/css/styles.css"/>
+		<link type="text/css" rel="stylesheet" href="/css/styles.css" />
+		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+		@RenderSection("Styles", required: false)
 	</head>
-	<body class="controller-@ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant() action-@ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant()">
+	<body class="grey lighten-4">
 		<header>
-			<nav>
-				<ul id="main-nav">
-					<li><a href="/">Blog</a></li>
-					<li><a href="/résumé">Résumé</a></li>
-					<li><a href="/skills">Skills</a></li>
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</nav>
+			<div class="navbar-fixed">
+				@RenderSection("Nav", required: false)
+
+				<nav>
+					<div class="nav-wrapper">
+						<a href="#" data-activates="side-nav" class="button-collapse"><i class="material-icons">menu</i></a>
+						<a href="#" class="brand-logo">Josh Olson</a>
+
+						<ul id="nav-mobile" class="right hide-on-med-and-down">
+							<li class="@(ca == "blog.index" ? "active" : "")"><a href="/">Blog</a></li>
+							<li class="@(ca == "resume.index" ? "active" : "")"><a href="/resume">Résumé</a></li>
+							<li class="@(ca == "skills.index" ? "active" : "")"><a href="/skills">Skills</a></li>
+							<li class="@(ca == "contact.index" ? "active" : "")"><a href="/contact">Contact</a></li>
+						</ul>
+
+						<ul class="side-nav" id="side-nav">
+							<li class="@(ca == "blog.index" ? "active" : "")"><a href="/">Blog</a></li>
+							<li class="@(ca == "resume.index" ? "active" : "")"><a href="/resume">Résumé</a></li>
+							<li class="@(ca == "skills.index" ? "active" : "")"><a href="/skills">Skills</a></li>
+							<li class="@(ca == "contact.index" ? "active" : "")"><a href="/contact">Contact</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
 		</header>
-		<section id="content">@RenderBody()</section>
-		<footer>
-			<p id="copyright">&copy; @DateTime.Now.Year Josh Olson. All rights reserved.</p>
+	
+		<main>@RenderBody()</main>
+		
+		<footer class="page-footer">
+			<h5 class="white-text">Check me out elsewhere</h5>
 			<ul id="web-profiles">
-				<li><a target="_blank" href="https://www.linkedin.com/in/olsondev" title="LinkedIn"><icon size="60" name="linkedin-box"/></a></li>
-				<li><a target="_blank" href="https://www.github.com/olsondev" title="GitHub"><icon size="60" name="github-box"/></a></li>
-				<li><a target="_blank" href="https://bitbucket.org/olson.dev/" title="BitBucket"><icon size="60" name="bitbucket"/></a></li>
-				<li><a target="_blank" href="http://stackexchange.com/users/77825/olson-dev" title="StackExchange"><icon size="60" name="stackexchange"/></a></li>
-				<li><a target="_blank" href="https://careers.stackoverflow.com/olsondev" title="StackOverflow Careers"><icon size="60" name="stackoverflow-separated"/></a></li>
+				<li><a target="_blank" href="https://www.linkedin.com/in/olsondev" title="LinkedIn"><icon size="60" name="linkedin-box" /></a></li>
+				<li><a target="_blank" href="https://www.github.com/olsondev" title="GitHub"><icon size="60" name="github-box" /></a></li>
+				<li><a target="_blank" href="https://bitbucket.org/olson.dev/" title="BitBucket"><icon size="60" name="bitbucket" /></a></li>
+				<li><a target="_blank" href="http://stackexchange.com/users/77825/olson-dev" title="StackExchange"><icon size="60" name="stackexchange" /></a></li>
+				<li><a target="_blank" href="https://careers.stackoverflow.com/olsondev" title="StackOverflow Careers"><icon size="60" name="stackoverflow-separated" /></a></li>
 			</ul>
+
+			<div class="footer-copyright">
+				<div class="container">&copy; Josh Olson @DateTime.Now.Year. All rights reserved.</div>
+			</div>
 		</footer>
+
+		<script type="text/javascript" src="/scripts/jquery.min.js"></script>
+		<script type="text/javascript" src="/scripts/materialize.min.js"></script>
+		<script>$(() => { $(".button-collapse").sideNav(); });</script>
+		@RenderSection("Scripts", required: false)
 	</body>
 </html>

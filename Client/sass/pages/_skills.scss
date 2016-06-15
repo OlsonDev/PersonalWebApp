@@ -1,132 +1,56 @@
 /// <reference path="../partials/_all.scss"/>
-#skills-filter {
-	@extend %lifted-white-box;
-	width: 800px;
-	margin: 0 auto 10px;
+#skill-search {
+	top: 64px + 64px - (55.5px / 2);
+	bottom: auto;
+	right: 24px;
+	transform: translateX(-50%);
 	padding: 0;
-	
-	header {
-		padding: 20px;
+	z-index: 10000;
+}
 
-		a {
-			color: $text-color;
-			position: relative;
-			width: 100%;
-			display: block;
-		}
+#tag-filter-modal {
+	top: 64px + 64px !important;
+	bottom: auto !important;
+}
 
-		.icon-filter-outline {
-			margin-right: 10px;
-		}
-
-		* {
-			display: inline-block;
-			vertical-align: middle;
-			font-weight: bold;
-		}
-
-		.icon-chevron-up, .icon-chevron-down {
-			position: absolute;
-			right: 0;
-		}
+@media #{$small-and-down} {
+	#skill-search {
+		top: 56px + 56px - (55.5px / 2);
 	}
 
-	form {
-		transform: scaleY(0);
-		transform-origin: top;
-		transition: all 166ms;
-		padding: 0 20px;
-		height: 0;
-
-		h3 {
-			font-style: italic;
-		}
-	}
-
-	.icon-chevron-up {
-		display: none;
-	}
-
-	&.expanded {
-		.icon-chevron-down {
-			display: none;
-		}
-
-		.icon-chevron-up, form {
-			display: inline-block;
-		}
-
-		form {
-			transform: scaleY(1);
-			padding: 20px;
-			height: auto;
-		}
-
-		header {
-			border-bottom: 1px solid $divider-color;
-		}
-	}
-
-	input[type=search] {
-		width: 660px;
-		height: 37px;
-		padding: 10px;
-		margin: 10px 0 0;
-		border: 1px solid transparent;
-
-		&:hover, &:focus {
-			border-bottom-color: $divider-color;
-		}
-	}
-
-	li {
-		-moz-user-select: none;
-		-webkit-user-select: none;
-		user-select: none;
-		padding: 10px;
-		border: 1px solid $divider-color;
-		margin: 10px;
-		cursor: pointer;
-
-		&.active {
-			color: #fff;
-			background: $accent-color;
-			border-color: $accent-color;
-		}
+	#tag-filter-modal {
+		top: 56px + 56px !important;
 	}
 }
 
 #skills {
-	width: 5 * (240px + 2 * 5px);
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
 
-	li {
-		@extend %white-box;
-		vertical-align: top;
-		width: 240px;
-		height: 148px;
-		margin: 5px;
-		transition: border-color 166ms 333ms, background-color 166ms 333ms, box-shadow 333ms ease-in;
-		line-height: 1;
+	.col {
+		min-width: calc(198px + 40px + 1.50rem);
+		display: inline-block;
+		float: none;
+	}
 
-		&.filtered {
-			display: none;
+	.card {
+		text-align: center;
+
+		.card-title {
+			line-height: 36px;
+			font-size: 18px;
 		}
 
 		&:hover {
-			transition: box-shadow 333ms 83ms;
-			box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
-
 			.rating {
-				display: block;
+				visibility: visible;
 			}
 		}
 
 		.icon-container {
 			height: 60px;
-			width: 198px;
+			width: 100%;
 			display: flex;
 		}
 
@@ -134,21 +58,14 @@
 			margin: auto;
 		}
 
-		h3 {
-			font-weight: bold;
-			margin: 10px 0;
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-		}
-
 		.rating {
-			display: none;
+			display: inline-block;
+			visibility: hidden;
 			width: 198px;
 			height: 10px;
+			margin: 20px 0 0;
 			background-image: url(/svg/rating.svg);
 			background-repeat: no-repeat;
-			background-size: cover;
 		}
 
 		@for $i from 1 through 5 {
@@ -159,14 +76,12 @@
 	}
 }
 
-#clear-filters {
-	background: #D32F2F;
-	padding: 10px;
-	border: 1px solid #D32F2F;
-	color: #fff;
-	display: block;
-	position: absolute;
-	bottom: 20px;
-	right: 20px;
-	width: 100px;
+@media #{$medium-and-down} {
+	#skills {
+		.card {
+			.rating {
+				visibility: visible;
+			}
+		}
+	}
 }

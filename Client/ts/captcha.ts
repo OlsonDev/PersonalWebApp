@@ -12,8 +12,8 @@
 					email.href = `mailto:${obj.email}?subject=Hello from your website&body=Hey there,%0D%0A%0D%0A`;
 					email.textContent = obj.email;
 					document.getElementById('phone').textContent = obj.phone;
-					document.getElementById('contact-info').classList.remove('hidden');
-					document.getElementById('grecaptcha').classList.add('hidden');
+					document.getElementById('contact-info').classList.remove('hide');
+					document.getElementById('grecaptcha').classList.add('hide');
 				} else {
 					console.log(`Request failed; returned status ${xhr.status}.`);
 				}

@@ -5,15 +5,3 @@
 	-webkit-user-select: none;
 	user-select: none;
 }
-
-%white-box {
-	margin: 20px 0;
-	padding: 20px;
-	background: #fff;
-	border: 1px solid $divider-color;
-}
-
-%lifted-white-box {
-	@extend %white-box;
-	box-shadow: 4px 4px 12px -1px rgba(0, 0, 0, 0.4);
-}

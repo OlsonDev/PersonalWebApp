@@ -4,38 +4,55 @@
 
 <link rel="stylesheet" type="text/css" href="/css/skills-spritesheet.css"/>
 
-<div id="skills-filter" class="collapsed">
-	<header>
-		<a href="#" id="filter-form-toggle">
-			<icon name="filter-outline"/>
-			<h3>Search my skills</h3>
-			<icon name="chevron-down"/>
-			<icon name="chevron-up"/>
+<div class="container offset-nav-search">
+	<div id="skill-search" class="fixed-action-btn">
+		<a href="#tag-filter-modal" id="tag-filter-btn" class="btn-floating btn-large cyan darken-4 tooltipped" data-position="bottom" data-tooltip="Filter skills by tag">
+			<i class="large material-icons">label</i>
 		</a>
-	</header>
-	<form>
-		<h3>Tagged&hellip;</h3>
-		<ol id="filter-tags">
-			@foreach (var tag in Model.Tags) {
-				<li class="tag-@tag.Code">@tag.Name</li>
-			}
-		</ol>
-		<h3>Named&hellip;</h3>
-		<input type="search" placeholder="Search by name" />
-		<button type="button" id="clear-filters">Clear</button>
-	</form>
+	</div>
+
+	<div id="skills" class="row">
+		@foreach (var skill in Model.Skills) {
+			<div class="col s12 m3 l3 skill-@skill.Code @skill.Tags.JoinWithPrefix("tag-")">
+				<div class="card hoverable">
+					<div class="card-content">
+						<div class="card-title truncate tooltipped" data-position="top" data-tooltip="@skill.Name">@skill.Name</div>
+						<div class="icon-container">
+							<div class="icon icon-@skill.IconClass"></div>
+						</div>
+						<div class="tooltipped rating rating-@skill.Rating" data-position="bottom" data-tooltip="Skill level: @skill.Rating/5"></div>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
 </div>
 
-<ol id="skills">
-	@foreach (var skill in Model.Skills) {
-		<li class="skill-@skill.Code @skill.Tags.JoinWithPrefix("tag-")">
-			<div class="icon-container">
-				<div class="icon icon-@skill.IconClass"></div>
-			</div>
-			<h3 title="@skill.Name">@skill.Name</h3>
-			<div class="rating rating-@skill.Rating" title="Skill level: @skill.Rating/5"></div>
-		</li>
-	}
-</ol>
+<div id="tag-filter-modal" class="modal bottom-sheet">
+	<div class="modal-content">
+		<h4>Filter skills by tag</h4>
+		<div class="center-align">
+			@foreach (var tag in Model.Tags) {
+				<div class="chip tag-@tag.Code">@tag.Name</div>
+			}
+		</div>
+	</div>
+</div>
 
-<script src="/scripts/skills.js"></script>
+@section Nav {
+	<nav class="nav-search">
+		<div class="nav-wrapper">
+			<form>
+				<div class="input-field">
+					<input id="search" type="search" placeholder="Skill name&hellip;">
+					<label for="search"><i class="material-icons">search</i></label>
+					<i class="material-icons">close</i>
+				</div>
+			</form>
+		</div>
+	</nav>
+}
+
+@section Scripts {
+	<script src="/scripts/skills.js"></script>
+}

@@ -2,7 +2,10 @@
 	"name": "personalwebapp",
 	"version": "0.0.1",
 	"description": "Josh Olson's personal website",
-	"dependencies": { },
+	"dependencies": {
+			"materialize-css": "^0.97.6",
+			"jquery": "^3.0.0"
+	},
 	"devDependencies": {
 		"concurrently": "^1.0.0",
 		"typescript": "^1.8",
@@ -22,12 +25,13 @@
 		"build": "npm run clear-wwwroot && npm run copy && npm run sass",
 		"start": "dnx web",
 		"clear-wwwroot": "rd /s /q wwwroot && md wwwroot",
-		"copy": "concurrently \"npm run copy-images\" \"npm run copy-work-history\" \"npm run copy-highlight\" \"npm run copy-svg\" \"npm run copy-webconfig\"",
+		"copy": "concurrently \"npm run copy-images\" \"npm run copy-work-history\" \"npm run copy-highlight\" \"npm run copy-svg\" \"npm run copy-webconfig\" \"npm run copy-fonts\"",
 		"copy-images": "xcopy \"client/images\" \"wwwroot/images\" /y /q /i /s",
 		"copy-work-history": "xcopy \"client/work-history\" \"wwwroot/work-history\" /y /q /i /s",
 		"copy-highlight": "xcopy \"client/lib/highlight\" \"wwwroot/highlight\" /y /q /i /s",
 		"copy-svg": "xcopy \"client/svg\" \"wwwroot/svg\" /y /q /i /s",
 		"copy-webconfig": "xcopy \"client\\web.config\" \"wwwroot\\*\" /y /q",
+		"copy-fonts": "xcopy \"node_modules/materialize-css/fonts/roboto\" \"wwwroot/fonts/roboto\" /y /q /i /s",
 		"sass": "node-sass --indent-type tab --indent-width 1 --linefeed crlf --output-style expanded --precision 10 Client/sass/styles.scss -out-file wwwroot/css/styles.css",
 		"sass-watch": "node-sass -w --indent-type tab --indent-width 1 --linefeed crlf --output-style expanded --precision 10 Client/sass/styles.scss -out-file wwwroot/css/styles.css",
 		"tsc:w": "tsc -w",

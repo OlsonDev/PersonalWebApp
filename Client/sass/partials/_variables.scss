@@ -1,9 +1,28 @@
-$header-footer-text-color: #FFFFFF;
+@import '../../../node_modules/materialize-css/sass/components/_color';
+$primary-color: color('indigo', 'base');
+$secondary-color: color('teal', 'base');
+$footer-bg-color: color('blue-grey', 'darken-3');
+$chip-hover-color: color('grey', 'lighten-3');
+$chip-active-color: $secondary-color;
+$search-color: $secondary-color;
+
+
+$web-profile-default-color: color('blue-grey', 'lighten-3');
+$github-purple: #59297C;
+$linkedin-blue: #007AB5;
+$bitbucket-blue: #1F5081;
+$stackexchange-blue: #58B4F2;
+$stackoverflow-grey: #BCBBBB;
+$stackoverflow-orange: #F48024;
+
+$divider-color: #B6B6B6;
 $accent-color: #1976D2;
+/*$header-footer-text-color: #FFFFFF;
+
 $disabled-color: #727272;
 $text-color: #212121;
 $text-color-secondary: #727272;
-$divider-color: #B6B6B6;
+
 
 $code-black: #222222;
 $code-white: #FFFFFF;
@@ -20,16 +39,11 @@ $code-green: #528061;
 $code-blue: #4184A8;
 $code-purple: #5957B9;
 
-$github-purple: #59297C;
-$linkedin-blue: #007AB5;
-$bitbucket-blue: #1F5081;
-$stackexchange-blue: #58B4F2;
-$stackoverflow-grey: #BCBBBB;
-$stackoverflow-orange: #F48024;
+
 
 $bg-color: #EEEEEE;
 
-$web-profile-default-color: $header-footer-text-color;
+
 
 $header-height: 36px;
 $footer-height: 150px;
@@ -40,4 +54,4 @@ $focuses-color: #FFFFFF;
 $keywords-color: $accent-color;
 
 $bg-header-footer: url(/images/dark_wall.png);
-$bg-content: url(/images/textured_paper.png);
+$bg-content: url(/images/textured_paper.png);*/
