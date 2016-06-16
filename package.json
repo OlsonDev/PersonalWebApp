@@ -3,8 +3,8 @@
 	"version": "0.0.1",
 	"description": "Josh Olson's personal website",
 	"dependencies": {
-			"materialize-css": "^0.97.6",
-			"jquery": "^3.0.0"
+		"materialize-css": "^0.97.6",
+		"jquery": "^3.0.0"
 	},
 	"devDependencies": {
 		"concurrently": "^1.0.0",

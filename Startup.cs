@@ -16,21 +16,27 @@ namespace PersonalWebApp {
 	public class Startup {
 		public Startup(IHostingEnvironment env) {
 			var builder = new ConfigurationBuilder()
-					.SetBasePath(env.ContentRootPath)
-					.AddJsonFile("appsettings.json")
-					.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-					.AddUserSecrets()
-					.AddEnvironmentVariables()
+				.SetBasePath(env.ContentRootPath)
+				.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+				.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
 			;
+			if (env.IsDevelopment()) {
+				builder.AddUserSecrets();
+				// This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
+				builder.AddApplicationInsightsSettings(developerMode: true);
+			}
+			builder.AddEnvironmentVariables();
 			Configuration = builder.Build();
 		}
 
 		public IConfigurationRoot Configuration { get; set; }
 
 		public void ConfigureServices(IServiceCollection services) {
+			services.AddApplicationInsightsTelemetry(Configuration);
+
 			services.AddEntityFramework()
 				.AddEntityFrameworkSqlServer()
-				.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]))
+				.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")))
 			;
 			services.AddMemoryCache();
 			services.AddSession(options => {
@@ -54,8 +60,12 @@ namespace PersonalWebApp {
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 			loggerFactory.AddDebug();
 
+			app.UseApplicationInsightsRequestTelemetry();
+
 			if (env.IsDevelopment()) {
 				app.UseDeveloperExceptionPage();
+				app.UseDatabaseErrorPage();
+				app.UseBrowserLink();
 				app.EnsureSampleData(); // TODO: Only in production
 			} else {
 				app.UseExceptionHandler("/error");
@@ -69,7 +79,7 @@ namespace PersonalWebApp {
 					// http://docs.asp.net/en/latest/conceptual-overview/understanding-aspnet5-apps.html
 				}
 			}
-
+			app.UseApplicationInsightsExceptionTelemetry();
 			app.UseStaticFiles();
 			app.UseStripWhitespace();
 			app.UseSession();
@@ -80,11 +90,11 @@ namespace PersonalWebApp {
 
 		public static void Main(string[] args) {
 			var host = new WebHostBuilder()
-				.UseKestrel()
-				.UseContentRoot(Directory.GetCurrentDirectory())
-				.UseIISIntegration()
-				.UseStartup<Startup>()
-				.Build()
+					.UseKestrel()
+					.UseContentRoot(Directory.GetCurrentDirectory())
+					.UseIISIntegration()
+					.UseStartup<Startup>()
+					.Build()
 			;
 			host.Run();
 		}

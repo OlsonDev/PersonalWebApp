@@ -7,7 +7,7 @@
 	let searchInput: JQuery;
 	const oldOpenModal = $.fn.openModal;
 
-	$.fn.openModal = function () {
+	$.fn.openModal = function() {
 		oldOpenModal.apply(this, arguments);
 		// Undo body styles applied by oldOpenModal for anti-scroll behavior
 		$(document.body).css({ overflow: '', width: '' });
@@ -64,7 +64,7 @@
 				chip.addClass('active');
 				chip.siblings('.active').removeClass('active');
 				tagValue = result.length ? result[0] : tagValue;
-				
+
 				const close = $('<i class="material-icons">close</i>');
 				close.on('click', function () {
 					tagValue = '';
@@ -84,7 +84,7 @@
 		});
 
 		$('#tag-filter-btn').click(function () {
-			if (modal.hasClass('open')) return;
+			if (modal.hasClass('open')) { return; }
 			modal.openModal();
 			$('.modal.open').hide().slideDown(250);
 			$('.lean-overlay').remove();
@@ -96,4 +96,4 @@
 			search();
 		});
 	});
-}());
+})();
