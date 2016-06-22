@@ -11,15 +11,31 @@
 	var humanReadableFull = datePublished.ToString("dddd, MMMM d, yyyy hh:mm:ss tt (zzz)");
 
 	var htmlContent = string.IsNullOrEmpty(Model.HtmlContent) ? "<h2>Blog entry content</h2>" : Model.HtmlContent;
+	var renderBlogContent = !ViewData.ContainsKey("RenderBlogContent") || ViewData["RenderBlogContent"].Equals(true);
+	var isAuthed = ViewData.ContainsKey("IsAuthed") && ViewData["IsAuthed"].Equals(true);
 }
-<article class="col s8 offset-s2 markdown-body">
-	<div class="card">
+
+<div class="col s12 m10 offset-m1 l10 offset-l1 markdown-body">
+	<article class="card">
 		<header class="card-content">
 			<h1 class="card-title"><a href="@Model.Url">@title</a></h1>
 			<p>Written by Josh Olson <time datetime="@iso8601" title="@humanReadableFull">@humanReadableShort</time></p>
+			@if (isAuthed) {
+				<a href="#" class="dropdown-button" data-activates="blog-dropdown-@Model.EntryId" data-constrainwidth="false"><i class="material-icons waves-effect">more_vert</i></a>
+			}
 		</header>
-		<div class="card-content-divided">
-			@Html.Raw(htmlContent)
-		</div>
-	</div>
-</article>
+		@if (renderBlogContent) {
+			<div class="card-content-divided">
+				@Html.Raw(htmlContent)
+			</div>
+		}
+	</article>
+</div>
+
+@if (isAuthed) {
+	<ul id="blog-dropdown-@Model.EntryId" class="dropdown-content">
+		<li><a href="@Model.Url/edit">Edit</a></li>
+		<li><a href="#share">Share</a></li>
+		<li><a href="@Model.Url#comments">Comment</a></li>
+	</ul>
+}

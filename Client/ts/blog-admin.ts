@@ -4,6 +4,7 @@ const signin           = document.getElementById('signin')                as HTM
 const saveBtn          = document.getElementById('save-button')           as HTMLButtonElement;
 const updatePreviewBtn = document.getElementById('update-preview-button') as HTMLButtonElement;
 const form             = document.getElementById('blog-form')             as HTMLFormElement;
+const $form = $(form);
 
 const buttons = document.querySelectorAll('.buttons button') as NodeListOf<HTMLButtonElement>;
 
@@ -67,8 +68,7 @@ updatePreviewBtn.addEventListener('click', () => {
 				return;
 			}
 			const html = response.result;
-			const article = document.querySelector('form + article');
-			article && article.remove();
+			$(form).siblings().remove();
 			form.insertAdjacentHTML('afterend', html);
 			Array.prototype.forEach.call(document.querySelectorAll('pre code'), hljs.highlightBlock);
 		} else {

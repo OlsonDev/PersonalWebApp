@@ -22,17 +22,40 @@ namespace PersonalWebApp.Controllers {
 		}
 		public IActionResult Index() {
 			ViewData["Title"] = "My blog";
+			ViewData["IsAuthed"] = IsAuthed();
 			return View(_blogService.GetAll());
 		}
 
-		public IActionResult Admin() {
-			ViewData["Title"] = "My blog admin";
-			return View();
+		public IActionResult New() {
+			var x = RouteData.Values;
+			ViewData["Title"] = "New blog";
+			ViewData["IsAuthed"] = IsAuthed();
+			var model = new BlogEntry();
+			return View("Edit", model);
+		}
+
+		[HttpGet("/blog/{year}/{month}/{day}/{slug}/edit")]
+		public IActionResult Edit(int year, int month, int day, string slug) {
+			ViewData["Title"] = "Edit blog";
+			ViewData["IsAuthed"] = IsAuthed();
+
+			var date = new DateTime(year, month, day);
+			var entries = _blogService.GetAll(date, slug).ToList();
+			if (entries.FirstOrDefault()?.Slug == slug || entries.Count == 1) {
+				var model = entries.First();
+				ViewData["Title"] = $"Editing blog: {model.Title}";
+				return View(model);
+			} else {
+				ViewData["Title"] = $"Cannot edit blog; {entries.Count} entries for {date.ToString("MMMM d, yyyy")}";
+				ViewData["RenderBlogContent"] = false;
+				return View("Index", entries);
+			}
 		}
 
 		public IActionResult Preview(string title, string slug, string markdownContent) {
 			return ApiResponse(() => {
 				if (!IsAuthed()) return NotAuthedApiResponse();
+				ViewData["IsAuthed"] = true;
 				var now = DateTimeOffset.Now;
 				var model = new BlogEntry {
 					MarkdownContent = markdownContent,
@@ -47,19 +70,33 @@ namespace PersonalWebApp.Controllers {
 			});
 		}
 
-		public IActionResult Save(string title, string slug, string markdownContent) {
+		public IActionResult Save(Guid entryId, string title, string slug, string markdownContent) {
 			return ApiResponse(() => {
 				if (!IsAuthed()) return NotAuthedApiResponse();
+
+				var htmlContent = CommonMark.CommonMarkConverter.Convert(markdownContent);
 				var now = DateTimeOffset.Now;
-				var model = new BlogEntry {
-					MarkdownContent = markdownContent,
-					HtmlContent = CommonMark.CommonMarkConverter.Convert(markdownContent),
-					Title = title,
-					Slug = slug,
-					DateCreated = now,
-					DateLastModified = now,
-					DatePublished = now
-				};
+
+				BlogEntry model;
+				if (entryId == Guid.Empty) {
+					model = new BlogEntry {
+						MarkdownContent = markdownContent,
+						HtmlContent = htmlContent,
+						Title = title,
+						Slug = slug,
+						DateCreated = now,
+						DateLastModified = now,
+						DatePublished = now
+					};
+				} else {
+					// TODO: Handle lookup failure
+					model = _blogService.GetById(entryId);
+					model.MarkdownContent = markdownContent;
+					model.HtmlContent = htmlContent;
+					model.Title = title;
+					model.Slug = slug;
+					model.DateLastModified = now;
+				}
 
 				_blogService.SaveBlogEntry(model);
 
@@ -69,6 +106,8 @@ namespace PersonalWebApp.Controllers {
 
 		[HttpGet("/blog/{year}/{month}/{day}/{slug?}")]
 		public IActionResult Single(int year, int month, int day, string slug) {
+			ViewData["IsAuthed"] = IsAuthed();
+
 			var date = new DateTime(year, month, day);
 			var model = _blogService.GetAll(date, slug).ToList();
 			if (model.FirstOrDefault()?.Slug == slug) {
@@ -82,7 +121,7 @@ namespace PersonalWebApp.Controllers {
 
 			return View("Index", model);
 		}
-
+		
 		private static InvalidApiResponse NotAuthedApiResponse() {
 			return new InvalidApiResponse("Not authenticated and/or authorized.");
 		}

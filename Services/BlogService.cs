@@ -17,7 +17,7 @@ namespace PersonalWebApp.Services {
 		public Conceptual.BlogEntry GetById(string blogEntryId) => GetById(Guid.Parse(blogEntryId));
 
 		public Conceptual.BlogEntry GetById(Guid blogEntryId) {
-			var entry = _dbContext.BlogEntries.Include(m => m.Comments).Where(be => be.EntryId == blogEntryId).ToList().Select(bee => new Conceptual.BlogEntry {
+			var entry = _dbContext.BlogEntries.Include(m => m.Comments).Where(be => be.EntryId == blogEntryId).Select(bee => new Conceptual.BlogEntry {
 				EntryId = bee.EntryId,
 				DatePublished = bee.DatePublished,
 				DateCreated = bee.DateCreated,
@@ -77,8 +77,7 @@ namespace PersonalWebApp.Services {
 				})
 			;
 		}
-
-		
+				
 		public IEnumerable<Conceptual.BlogEntry> GetAll(DateTime date, string slug) {
 			return _dbContext.BlogEntries
 				.Include(m => m.Comments)
@@ -119,7 +118,8 @@ namespace PersonalWebApp.Services {
 		}
 
 		public Conceptual.BlogEntry SaveBlogEntry(Conceptual.BlogEntry model) {
-			model.EntryId = model.EntryId == Guid.Empty
+			var isNew = model.EntryId == Guid.Empty;
+			model.EntryId = isNew
 				? _dbContext.NewGuidComb()
 				: model.EntryId
 			;
@@ -133,7 +133,12 @@ namespace PersonalWebApp.Services {
 				MarkdownContent = model.MarkdownContent,
 				HtmlContent = model.HtmlContent,
 			};
-			_dbContext.BlogEntries.Add(entity);
+
+			if (isNew) {
+				_dbContext.BlogEntries.Add(entity);
+			} else {
+				_dbContext.BlogEntries.Update(entity);
+			}
 			_dbContext.SaveChanges();
 			return model;
 		}

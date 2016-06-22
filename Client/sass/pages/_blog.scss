@@ -5,13 +5,34 @@
 	border-radius: 2px;
 	white-space: nowrap;
 }
+
 .ptr-1 {
 	background: #F00;
 }
+
 .ptr-2 {
 	background: #FC0;
 	color: #000;
 }
+
 .ptr-3 {
 	background: #00B3FF;
+}
+
+article {
+	header {
+		position: relative;
+
+		.dropdown-button {
+			position: absolute;
+			bottom: 20px;
+			right: 20px;
+		}
+
+		.material-icons {
+			cursor: pointer;
+			border-radius: 50%;
+			padding: 8px;
+		}
+	}
 }

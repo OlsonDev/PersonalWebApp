@@ -1,5 +1,7 @@
 @model IEnumerable<PersonalWebApp.Models.Conceptual.BlogEntry>
-
+@{ 
+	var renderBlogContent = !ViewData.ContainsKey("RenderBlogContent") || ViewData["RenderBlogContent"].Equals(true);
+}
 <div class="container">
 	<div class="row">
 		@foreach (var blogEntry in Model) {
@@ -8,11 +10,13 @@
 	</div>
 </div>
 
-@section Styles {
-	<link rel="stylesheet" href="/highlight/styles/vs.css">
-}
+@if (renderBlogContent) {
+	@section Styles {
+		<link rel="stylesheet" href="/highlight/styles/vs.css">
+	}
 
-@section Scripts {
-	<script src="/highlight/highlight.pack.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
+	@section Scripts {
+		<script src="/highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+	}
 }
