@@ -81,7 +81,8 @@ namespace PersonalWebApp {
 			}
 			app.UseApplicationInsightsExceptionTelemetry();
 			app.UseStaticFiles();
-			app.UseStripWhitespace();
+			// TODO: Why does Core 1.0 throw an exception when this worked in RC1+RC2?
+			// app.UseStripWhitespace();
 			app.UseSession();
 			app.UseMvc(routes => {
 				routes.MapRoute("default", "{controller=Blog}/{action=Index}/{id?}");

@@ -20,7 +20,7 @@ namespace PersonalWebApp.Controllers {
 
 		protected string RenderPartialViewToString(string viewName, object model, bool minify = true) {
 			if (string.IsNullOrEmpty(viewName)) {
-				viewName = ActionContext.ActionDescriptor.Name;
+				viewName = ActionContext.ActionDescriptor.DisplayName;
 			}
 			ViewData.Model = model;
 			using (var sw = new StringWriter()) {
