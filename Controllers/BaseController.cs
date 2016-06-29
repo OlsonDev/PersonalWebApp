@@ -61,19 +61,17 @@ namespace PersonalWebApp.Controllers {
 			}
 		}
 
-		private static JsonSerializerSettings GetSettings() {
-			return new JsonSerializerSettings { Formatting = Formatting.Indented, ContractResolver = CustomContractResolver.Instance };
-		}
+		private static JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings { Formatting = Formatting.Indented, ContractResolver = CustomContractResolver.Instance };
 
 		private IActionResult ApiResponse(object result) {
 			if (result is ValidApiResponse || result is InvalidApiResponse) {
-				return Json(result, GetSettings());
+				return Json(result, jsonSerializerSettings);
 			}
-			return Json(new ValidApiResponse(result), GetSettings());
+			return Json(new ValidApiResponse(result), jsonSerializerSettings);
 		}
 
 		private IActionResult ExceptionalApiResponse(Exception ex) {
-			return Json(new InvalidApiResponse(ex), GetSettings());
+			return Json(new InvalidApiResponse(ex), jsonSerializerSettings);
 		}
 	}
 }
